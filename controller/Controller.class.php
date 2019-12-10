@@ -16,6 +16,10 @@ class Controller {
 		$this->title = "Contact Us";
 	}
 
+	public function aboutUs(Request $request){
+	    $this->title = "About Us";
+    }
+
 	public function list_users(Request $request) {
 		//$sort = isset($_GET['sort']) ? $_GET['sort'] : 'lastname';
 		$sort = $request->getParameter('sort', 'name');

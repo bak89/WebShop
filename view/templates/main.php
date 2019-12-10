@@ -44,11 +44,11 @@
 
         <!-- link about us / account  -->
         <div class="col-1">
-            <p class="footernav-item"><a id="AboutUS" href="../index.php" class="footernav-item">
+            <p class="footernav-item"><a id="AboutUS" href="index.php?action=aboutUs" class="footernav-item">
                     <span>About Us</span>
                 </a>
             </p>
-            <p class="footernav-item"><a id="ContactUS" href="../index.php?action=contactUs" class="footernav-item">
+            <p class="footernav-item"><a id="ContactUS" href="index.php?action=contactUs" class="footernav-item">
                     <span>Contact Us</span>
                 </a>
             </p>
