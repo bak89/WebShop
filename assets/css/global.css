@@ -1,0 +1,30 @@
+*{
+    font-family: Poppins;
+}
+
+body{
+    background: #262626;
+}
+
+.head{
+    text-align: left;
+    padding: 50px;
+
+}
+
+h1{
+    color: white;
+}
+
+h2{
+    color: #4427ff;
+
+}
+
+label{
+    color: white;
+    background: #262626;}
+
+
+
+
