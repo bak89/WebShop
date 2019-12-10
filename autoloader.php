@@ -5,6 +5,7 @@ function __autoload($class_name){
 	$dirs = [
 		'lib/',
 		'controller/',
+        'messages/',
 		'model/',
 		'view/'
 	];

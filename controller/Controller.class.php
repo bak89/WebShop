@@ -12,43 +12,43 @@ class Controller {
 		$this->title = "Home";
 	}
 
-	public function contact(Request $request) {
-		$this->title = "Contact";
+	public function contactUs(Request $request) {
+		$this->title = "Contact Us";
 	}
 
-	public function list_students(Request $request) {
+	public function list_users(Request $request) {
 		//$sort = isset($_GET['sort']) ? $_GET['sort'] : 'lastname';
-		$sort = $request->getParameter('sort', 'lastname');
-		$this->data["students"] = Student::getStudents($sort);
+		$sort = $request->getParameter('sort', 'name');
+		$this->data["users"] = User::getUser($sort);
 	}
 
-	public function edit_student(Request $request) {
+	public function edit_user(Request $request) {
 		if (!$this->isLoggedIn()) {
-			$this->data['message'] = "To edit a Student, please login first!";
+			$this->data['message'] = "To edit a User, please login first!";
 			return 'login';
 		}
 		$id = $request->getParameter('id', 0);
-		$student = Student::getStudentById($id);
-		if (!$student) {
+		$user = User::getUserById($id);
+		if (!$user) {
 			return $this->page404();
 		}
-		$this->data['student'] = $student;
+		$this->data['user'] = $user;
 		$this->data['projects'] = Project::getProjects();
 	}
 
-	public function update_student(Request $request) {
+	public function update_user(Request $request) {
 		if (!$this->isLoggedIn()) {
-			$this->data['message'] = "To update a Student, please login first!";
+			$this->data['message'] = "To update a User, please login first!";
 			return 'login';
 		}
-		$values = $request->getParameter('student', array());
-		$student = Student::getStudentById($values['id']);
-		if (!$student) {
+		$values = $request->getParameter('user', array());
+		$user = User::getUserById($values['id']);
+		if (!$user) {
 			return $this->page404();
 		}
-		$student->update($values);
-		$student->save();
-		$this->data['message'] = "Student updated successfully!";
+		$user->update($values);
+		$user->save();
+		$this->data['message'] = "User updated successfully!";
 		//return 'list_students';
 
 		// external redirect
@@ -56,7 +56,7 @@ class Controller {
 		//exit();
 
 		//internal page redirect
-		return $this->internalRedirect('list_students', $request);
+		return $this->internalRedirect('list_users', $request);
 	}
 
 	public function login(Request $request) {
@@ -77,7 +77,7 @@ class Controller {
 		$this->startSession();
 		session_destroy();
 		$_SESSION = array();
-		$this->data['message'] = "Und Tschüss!";
+		$this->data['message'] = "Bye Bye!";
 		return 'home';
 	}
 
@@ -92,7 +92,7 @@ class Controller {
 	}
 
 	public function signUp(Request $request){
-		$this->data["message"] = "Hello World!";
+		//$this->data["message"] = "Hello World!";
 		$this->title = "Sign Up";
 	}
 

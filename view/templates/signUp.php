@@ -15,6 +15,6 @@
         </div>
         <button class="ui button" type="submit">Submit</button>
 
-        <input type="hidden" name="user[userType]" value="user" />
+        <input type="hidden" name="user[userType]" value="user"/>
     </form>
 </div>
