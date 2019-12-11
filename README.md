@@ -1,2 +1,4 @@
-# mvc_i2A
-First test with MVC, for web class
+# WebShop
+Web shop for the module BTI7054
+
+Albrecht Anna Katharina / Bakhiet Derias Giorgio
