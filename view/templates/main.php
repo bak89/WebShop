@@ -1,5 +1,5 @@
 <?php
-//require_once('lib/helper.php');
+require_once('lib/helper.php');
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +16,7 @@
 <header>
     <div class="head">
         <p>GA*AG</p>
+        <?php if ($this->controller->isLoggedIn()) echo " <a href=\"index.php?action=logout\"><button class=\"headerButton\">Logout</button></a>"; ?>
         <a href="index.php?action=login">
             <button class="headerButton">Log in</button>
         </a>
@@ -26,13 +27,15 @@
         <form action="index.php?action=search" method="post">
             <label id="searchbar">Search: <input type="text" placeholder="what are you looking for?" required></label>
         </form>
-        <?php if ($this->controller->isLoggedIn()) echo " | <a href=\"index.php?action=logout\">Logout</a>"; ?>
+
     </div>
 
-    <!--    <div class="navbar">
-        </?php render_navigation($language, $pageId); ?>
-        <div id="languages"></?php render_languages($language, $pageId); ?></div>
-    </div>-->
+    <div class="navbar">
+        <?php render_navigation($language, $pageId); ?>
+        <div id="languages"><?php render_languages($language, $pageId); ?></div>
+    </div>
+    </div>
+
 
 </header>
 
@@ -110,7 +113,7 @@
         </div>
 
         <!-- Copyright  -->
-        &copy; 2019
+        &copy; 2019 Anna & Giorgio
     </div>
 
 </footer>

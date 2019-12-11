@@ -20,7 +20,7 @@ class Controller {
 	    $this->title = "About Us";
     }
 
-	public function list_users(Request $request) {
+/*	public function list_users(Request $request) {
 		//$sort = isset($_GET['sort']) ? $_GET['sort'] : 'lastname';
 		$sort = $request->getParameter('sort', 'name');
 		$this->data["users"] = User::getUser($sort);
@@ -62,7 +62,7 @@ class Controller {
 		//internal page redirect
 		return $this->internalRedirect('list_users', $request);
 	}
-
+*/
 	public function login(Request $request) {
 		$login = $request->getParameter('login', '');
 		$password = $request->getParameter('password', '');
@@ -96,7 +96,7 @@ class Controller {
 	}
 
 	public function signUp(Request $request){
-		//$this->data["message"] = "Hello World!";
+		$this->data["message"] = "Hello World!";
 		$this->title = "Sign Up";
 	}
 
