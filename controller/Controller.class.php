@@ -89,26 +89,42 @@ class Controller
     }
 
     // PRODUCT
+    public function add_product(Request $request){
+        if (!$this->isLoggedIn()) {
+            $this->data['message'] = "To add a Product, please login first!";
+            return 'login';
+        }
+        $values = $request->getParameter('product', array());
+        $product = Product::insert($values);
+        if (!$product) {
+            return $this->page404();
+        }
+        $this->data['message'] = "Product created successfully!";
+        return 'home';
+    }
+
     public function list_products(Request $request)
     {
-        //$sort = isset($_GET['sort']) ? $_GET['sort'] : 'lastname';
-        $sort = $request->getParameter('sort', 'name');
-        $this->data["users"] = User::getUser($sort);
+        if (!$this->isLoggedIn()) {
+            $this->data['message'] = "To update a Product, please login first!";
+            return 'login';
+        }
+        $sort = $request->getParameter('sort', 'id');
+        $this->data["products"] = Product::getProduct($sort);
     }
 
     public function edit_product(Request $request)
     {
         if (!$this->isLoggedIn()) {
-            $this->data['message'] = "To edit a User, please login first!";
+            $this->data['message'] = "To edit a Product, please login first!";
             return 'login';
         }
         $id = $request->getParameter('id', 0);
-        $user = User::getUserById($id);
-        if (!$user) {
+        $product = Product::getProductById($id);
+        if (!$product) {
             return $this->page404();
         }
-        $this->data['user'] = $user;
-        $this->data['projects'] = Project::getProjects();
+        $this->data['product'] = $product;
     }
 
     public function update_product(Request $request)
@@ -117,14 +133,14 @@ class Controller
             $this->data['message'] = "To update a User, please login first!";
             return 'login';
         }
-        $values = $request->getParameter('user', array());
-        $user = User::getUserById($values['id']);
-        if (!$user) {
+        $values = $request->getParameter('product', array());
+        $product = Product::getProductById($values['id']);
+        if (!$product) {
             return $this->page404();
         }
-        $user->update($values);
-        $user->save();
-        $this->data['message'] = "User updated successfully!";
+        $product->update($values);
+        $product->save();
+        $this->data['message'] = "Product updated successfully!";
         //return 'list_students';
 
         // external redirect
@@ -132,7 +148,7 @@ class Controller
         //exit();
 
         //internal page redirect
-        return $this->internalRedirect('list_users', $request);
+        return $this->internalRedirect('list_products', $request);
     }
 
     //LOGIN
