@@ -2,7 +2,7 @@
 
 class Product
 {
-    private $productID;
+    private $ID;
     private $productType;
     private $productName;
     private $productPrice;
@@ -11,9 +11,9 @@ class Product
     private $productDescriptionEN;
     private $productImage;
 
-    public function getProductID()
+    public function getID()
     {
-        return $this->productID;
+        return $this->ID;
     }
 
     public function getProductName()
@@ -54,7 +54,7 @@ class Product
 
     public function __toString()
     {
-        return sprintf("%d) %s %s %s", $this->productID, $this->productName, $this->productPrice, $this->productType);
+        return sprintf("%d) %s %s %s", $this->ID, $this->productName, $this->productPrice, $this->productType);
     }
 
     static public function insert($values)
@@ -72,7 +72,7 @@ class Product
     static public function delete($id)
     {
         $id = (int)$id;
-        $res = DB::doQuery("DELETE FROM products WHERE id = $id");
+        $res = DB::doQuery("DELETE FROM products WHERE ID = $id");
         return $res != null;
     }
 
