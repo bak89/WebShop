@@ -50,8 +50,9 @@ class User
         return false;
     }
 
-    static public function delete($id) {
-        $id = (int) $id;
+    static public function delete($id)
+    {
+        $id = (int)$id;
         $res = DB::doQuery("DELETE FROM users WHERE id = $id");
         return $res != null;
     }
@@ -86,14 +87,21 @@ class User
         return $users;
     }
 
-    /*   $res = DB::doQuery("SELECT u.*, p.title AS 'user_list' FROM users u LEFT OUTER JOIN project p ON s.project_id = p.id$orderByStr");
-       if ($res) {
-           while ($user = $res->fetch_object(get_class())) {
-               $users[] = $user;
-           }
-       }
-       return $users;
-   }*/
+    public function update($values)
+    {
+        $db = DB::getInstance();
+        $this->Name = $db->escape_string($values['name']);
+        $this->Email = $db->escape_string($values['email']);
+        $this->Password = $db->escape_string($values['password']);
+        $this->UserType = $db->escape_string($values['userType']);
+    }
+
+    public function save()
+    {
+        $sql = sprintf("UPDATE users SET Name='%s', Email='%s', Password='%s', UserType='%s' WHERE id = %d;", $this->Name, $this->Email, $this->Password, $this->UserType, $this->ID);
+        $res = DB::doQuery($sql);
+        return $res != null;
+    }
 
     static public function getUserById($id)
     {

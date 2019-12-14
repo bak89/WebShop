@@ -4,6 +4,6 @@
 foreach ($users as $user) {
     $name = $user->getName();
     $id = $user->getID();
-    echo "<span class=\"user\">$user</span> <a href=\"index.php?action=edit_user&name=$name\">Edit</a> | <a href=\"index.php?action=delete_user&id=$id\">Delete</a><br/>";
+    echo "<span class=\"user\">$user</span> <a href=\"index.php?action=edit_user&id=$id\">Edit</a> | <a href=\"index.php?action=delete_user&id=$id\">Delete</a><br/>";
 }
 ?>

@@ -38,10 +38,10 @@ class Controller
 
     public function edit_user(Request $request)
     {
-        /*if (!$this->isLoggedIn()) {
+        if (!$this->isLoggedIn()) {
             $this->data['message'] = "To edit a User, please login first!";
             return 'login';
-        }*/
+        }
         $id = $request->getParameter('id', 0);
         $user = User::getUserById($id);
         if (!$user) {
@@ -82,7 +82,10 @@ class Controller
             return $this->page404();
         }
         $user = User::delete($id);
-        return $this->internalRedirect('list_users', $request);
+
+        //external redirect
+        header('Location: index.php?action=list_users');
+        exit();
     }
 
     // PRODUCT
@@ -170,7 +173,6 @@ class Controller
 
     public function signUp(Request $request)
     {
-        $this->data["message"] = "Hello World!";
         $this->title = "Sign Up";
     }
 

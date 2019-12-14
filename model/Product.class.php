@@ -69,6 +69,12 @@ class Product
         return false;
     }
 
+    static public function delete($id) {
+        $id = (int) $id;
+        $res = DB::doQuery("DELETE FROM product WHERE id = $id");
+        return $res != null;
+    }
+
     static public function getProduct($orderBy = 'name')
     {
         $orderByStr = '';

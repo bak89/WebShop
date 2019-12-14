@@ -3,6 +3,7 @@
 <?php
 foreach ($products as $product) {
     $name = $product->getName();
-    echo "<span class=\"user\">$product</span> <a href=\"index.php?action=edit_user&name=$name\">Edit</a> | <a href=\"index.php?action=delete_user&name=$name\">Delete</a><br/>";
+    $id = $product->getId();
+    echo "<span class=\"user\">$product</span> <a href=\"index.php?action=edit_user&name=$name\">Edit</a> | <a href=\"index.php?action=delete_user&id=$id\">Delete</a><br/>";
 }
 ?>
