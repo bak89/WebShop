@@ -3,6 +3,7 @@
 <?php
 foreach ($users as $user) {
     $name = $user->getName();
-    echo "<span class=\"user\">$user</span> <a href=\"index.php?action=edit_user&name=$name\">Edit</a> | <a href=\"index.php?action=delete_user&name=$name\">Delete</a><br/>";
+    $id = $user->getID();
+    echo "<span class=\"user\">$user</span> <a href=\"index.php?action=edit_user&name=$name\">Edit</a> | <a href=\"index.php?action=delete_user&id=$id\">Delete</a><br/>";
 }
 ?>
