@@ -63,10 +63,10 @@ class User
         $users = User::getUser('id');
         foreach ($users as $user) {
             if ($user->Email == $login && $user->Password == $password) {
-                return true;
+                return $user;
             }
         }
-        return false;
+        return null;
         //return isset(self::$users[$login]) && self::$users[$login] == $password;
     }
 

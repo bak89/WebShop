@@ -28,7 +28,7 @@ class Controller
 
     public function list_users(Request $request)
     {
-        if (!$this->isLoggedIn()) {
+        if (!$this->isAdmin()) {
             $this->data['message'] = "To update a User, please login first!";
             return 'login';
         }
@@ -38,7 +38,7 @@ class Controller
 
     public function edit_user(Request $request)
     {
-        if (!$this->isLoggedIn()) {
+        if (!$this->isAdmin()) {
             $this->data['message'] = "To edit a User, please login first!";
             return 'login';
         }
@@ -52,7 +52,7 @@ class Controller
 
     public function update_user(Request $request)
     {
-        if (!$this->isLoggedIn()) {
+        if (!$this->isAdmin()) {
             $this->data['message'] = "To update a User, please login first!";
             return 'login';
         }
@@ -89,7 +89,8 @@ class Controller
     }
 
     // PRODUCT
-    public function add_product(Request $request){
+    public function add_product(Request $request)
+    {
         if (!$this->isLoggedIn()) {
             $this->data['message'] = "To add a Product, please login first!";
             return 'login';
@@ -156,13 +157,15 @@ class Controller
     {
         $login = $request->getParameter('login', '');
         $password = $request->getParameter('password', '');
+        $user = User::checkCredentials($login, $password);
 
-        if (!User::checkCredentials($login, $password)) {
+        if ($user == null) {
             $this->data['message'] = "Sorry, wrong credentials!";
             return;
         }
         $this->startSession();
         $_SESSION['user'] = $login;
+        $_SESSION['userType'] = $user->getUserType();
         $this->data['message'] = "Hi " . ucfirst($login) . ", you just logged in!";
         return 'home';
     }
@@ -209,6 +212,16 @@ class Controller
     {
         $this->startSession();
         return isset($_SESSION['user']);
+    }
+
+    public function isAdmin()
+    {
+        $this->startSession();
+        if(! isset($_SESSION['userType'])){
+            return false;
+        } else{
+            return $_SESSION['userType']=='admin';
+        }
     }
 
     public function getTitle()
