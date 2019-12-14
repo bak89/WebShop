@@ -20,9 +20,10 @@ class Controller {
 	    $this->title = "About Us";
     }
 
-/*	public function list_users(Request $request) {
-		//$sort = isset($_GET['sort']) ? $_GET['sort'] : 'lastname';
-		$sort = $request->getParameter('sort', 'name');
+    // USER
+
+	public function list_users(Request $request) {
+		$sort = $request->getParameter('sort', 'id');
 		$this->data["users"] = User::getUser($sort);
 	}
 
@@ -37,7 +38,6 @@ class Controller {
 			return $this->page404();
 		}
 		$this->data['user'] = $user;
-		$this->data['projects'] = Project::getProjects();
 	}
 
 	public function update_user(Request $request) {
@@ -62,7 +62,51 @@ class Controller {
 		//internal page redirect
 		return $this->internalRedirect('list_users', $request);
 	}
-*/
+
+	// PRODUCT
+    public function list_products(Request $request) {
+        //$sort = isset($_GET['sort']) ? $_GET['sort'] : 'lastname';
+        $sort = $request->getParameter('sort', 'name');
+        $this->data["users"] = User::getUser($sort);
+    }
+
+    public function edit_product(Request $request) {
+        if (!$this->isLoggedIn()) {
+            $this->data['message'] = "To edit a User, please login first!";
+            return 'login';
+        }
+        $id = $request->getParameter('id', 0);
+        $user = User::getUserById($id);
+        if (!$user) {
+            return $this->page404();
+        }
+        $this->data['user'] = $user;
+        $this->data['projects'] = Project::getProjects();
+    }
+
+    public function update_product(Request $request) {
+        if (!$this->isLoggedIn()) {
+            $this->data['message'] = "To update a User, please login first!";
+            return 'login';
+        }
+        $values = $request->getParameter('user', array());
+        $user = User::getUserById($values['id']);
+        if (!$user) {
+            return $this->page404();
+        }
+        $user->update($values);
+        $user->save();
+        $this->data['message'] = "User updated successfully!";
+        //return 'list_students';
+
+        // external redirect
+        //header('Location: index.php?action=list_students');
+        //exit();
+
+        //internal page redirect
+        return $this->internalRedirect('list_users', $request);
+    }
+
 	public function login(Request $request) {
 		$login = $request->getParameter('login', '');
 		$password = $request->getParameter('password', '');
