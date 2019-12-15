@@ -24,6 +24,7 @@ class Controller
         $this->title = "About Us";
     }
 
+    // A D M I N  ONLY
     // USER
 
     public function list_users(Request $request)
@@ -38,10 +39,10 @@ class Controller
 
     public function edit_user(Request $request)
     {
-        if (!$this->isAdmin()) {
+       /* if (!$this->isAdmin()) {
             $this->data['message'] = "To edit a User, please login first!";
             return 'login';
-        }
+        }*/
         $id = $request->getParameter('id', 0);
         $user = User::getUserById($id);
         if (!$user) {
@@ -52,10 +53,10 @@ class Controller
 
     public function update_user(Request $request)
     {
-        if (!$this->isAdmin()) {
+       /* if (!$this->isAdmin()) {
             $this->data['message'] = "To update a User, please login first!";
             return 'login';
-        }
+        }*/
         $values = $request->getParameter('user', array());
         $user = User::getUserById($values['id']);
         if (!$user) {
@@ -89,12 +90,12 @@ class Controller
     }
 
     // PRODUCT
-    public function add_product(Request $request)
+    public function addProduct(Request $request)
     {
-        if (!$this->isLoggedIn()) {
+       /* if (!$this->isAdmin()) {
             $this->data['message'] = "To add a Product, please login first!";
             return 'login';
-        }
+        }*/
         $values = $request->getParameter('product', array());
         $product = Product::insert($values);
         if (!$product) {
@@ -102,6 +103,10 @@ class Controller
         }
         $this->data['message'] = "Product created successfully!";
         return 'home';
+    }
+    public function add_product(Request $request)
+    {
+        $this->title = "Add Product";
     }
 
     public function list_products(Request $request)
@@ -116,10 +121,10 @@ class Controller
 
     public function edit_product(Request $request)
     {
-        if (!$this->isLoggedIn()) {
+       /* if (!$this->isLoggedIn()) {
             $this->data['message'] = "To edit a Product, please login first!";
             return 'login';
-        }
+        }*/
         $id = $request->getParameter('id', 0);
         $product = Product::getProductById($id);
         if (!$product) {
@@ -130,7 +135,7 @@ class Controller
 
     public function update_product(Request $request)
     {
-        if (!$this->isLoggedIn()) {
+        if (!$this->isAdmin()) {
             $this->data['message'] = "To update a User, please login first!";
             return 'login';
         }
@@ -145,11 +150,25 @@ class Controller
         //return 'list_students';
 
         // external redirect
-        //header('Location: index.php?action=list_students');
+       // header('Location: index.php?action=list_products');
         //exit();
 
         //internal page redirect
         return $this->internalRedirect('list_products', $request);
+    }
+
+    public function delete_product(Request $request)
+    {
+        $id = $request->getParameter('id', 0);
+        $product = Product::getProductById($id);
+        if (!$product) {
+            return $this->page404();
+        }
+        $product = Product::delete($id);
+
+        //external redirect
+        header('Location: index.php?action=list_products');
+        exit();
     }
 
     //LOGIN

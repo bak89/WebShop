@@ -7,3 +7,4 @@ foreach ($products as $product) {
     echo "<span class=\"product\">$product</span><img src='assets/images/$image'> <a href=\"index.php?action=edit_product&id=$id\">Edit</a> | <a href=\"index.php?action=delete_product&id=$id\">Delete</a><br/>";
 }
 ?>
+<a href="index.php?action=add_product">Add Product</a>

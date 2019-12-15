@@ -6,3 +6,4 @@ foreach ($users as $user) {
     echo "<span class=\"user\">$user</span> <a href=\"index.php?action=edit_user&id=$id\">Edit</a> | <a href=\"index.php?action=delete_user&id=$id\">Delete</a><br/>";
 }
 ?>
+<a href="index.php?action=signUp">Add User</a>

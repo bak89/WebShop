@@ -54,7 +54,7 @@ class Product
 
     public function __toString()
     {
-        return sprintf("%d) %s %s %s", $this->ID, $this->productName, $this->productPrice, $this->productType);
+        return sprintf("%d) %s - %s - %s - %s - %s - %s", $this->ID, $this->productType, $this->productName, $this->productDescriptionDE, $this->productDescriptionIT, $this->productDescriptionEN, $this->productPrice);
     }
 
     static public function insert($values)
@@ -77,21 +77,21 @@ class Product
     }
 
 
-    public function update($id)
+    public function update($values)
     {
         $db = DB::getInstance();
-        $this->productType = $db->escape_string($values['type']);
-        $this->productName = $db->escape_string($values['name']);
-        $this->productPrice = (double)$values['price'];
-        $this->productDescriptionDE = $db->escape_string($values['desc_de']);
-        $this->productDescriptionIT = $db->escape_string($values['desc_it']);
-        $this->productDescriptionEN = $db->escape_string($values['desc_en']);
-        $this->productImage = $db->escape_string($values['image']);
+        $this->productType = $db->escape_string($values['productType']);
+        $this->productName = $db->escape_string($values['productName']);
+        $this->productDescriptionDE = $db->escape_string($values['productDescriptionDE']);
+        $this->productDescriptionIT = $db->escape_string($values['productDescriptionIT']);
+        $this->productDescriptionEN = $db->escape_string($values['productDescriptionEN']);
+        $this->productPrice = (double)$values['productPrice'];
+       // $this->productImage = $db->escape_string($values['productImage']);
     }
 
     public function save()
     {
-        $sql = sprintf("UPDATE products SET productType='%s',productName='%s', productDescriptionDE='%s', productDescriptionIT='%s', productDescriptionEN='%s', price=%d, productImage='%s'  WHERE id= %d;", $this->productType, $this->productName, $this->productDescriptionDE, $this->productDescriptionIT, $this->productDescriptionEN, $this->productPrice, $this->productImage);
+        $sql = sprintf("UPDATE products SET productType='%s',productName='%s', productDescriptionDE='%s', productDescriptionIT='%s', productDescriptionEN='%s', price='%d', productImage='%s'  WHERE ID= %d;", $this->productType, $this->productName, $this->productDescriptionDE, $this->productDescriptionIT, $this->productDescriptionEN, $this->productPrice, $this->productImage);
         $res = DB::doQuery($sql);
         return $res != null;
     }
@@ -127,7 +127,7 @@ class Product
     static public function getProductById($id)
     {
         $id = (int)$id;
-        $res = DB::doQuery("SELECT * FROM products WHERE id = $id");
+        $res = DB::doQuery("SELECT * FROM products WHERE ID = $id");
         if ($res) {
             if ($product = $res->fetch_object(get_class())) {
                 return $product;
