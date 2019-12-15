@@ -12,6 +12,9 @@ class Controller
     {
         $this->data["message"] = "Hello World!";
         $this->title = "Home";
+
+        $sort = $request->getParameter('sort', 'id');
+        $this->data["products"] = Product::getProduct($sort);
     }
 
     public function contactUs(Request $request)
@@ -23,6 +26,17 @@ class Controller
     {
         $this->title = "About Us";
     }
+
+    //All User
+
+   /* public function user_Profile(Request $request){
+        $this->title = "Profile";
+        if (!$this->isLoggedIn()) {
+            $this->data['message'] = "To update a User, please login first!";
+            return 'login';
+        }
+
+    }*/
 
     // A D M I N  ONLY
     // USER
