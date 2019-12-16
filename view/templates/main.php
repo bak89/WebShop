@@ -14,21 +14,38 @@ require_once('lib/helper.php');
 </head>
 <body>
 <header>
-    <div class="head">
-        <p>GA*AG</p>
-        <?php if ($this->controller->isLoggedIn()) echo " <a href=\"index.php?action=logout\"><button class=\"headerButton\">Logout</button></a>"; ?>
-        <a href="index.php?action=login">
-            <button class="headerButton">Log in</button>
-        </a>
-        <a href="index.php?action=signUp">
-            <button class="headerButton">Register</button>
-        </a>
+    <p>GA*AG</p>
+    <div class="navbar">
+        <!-- <form action="index.php?action=search" method="post">
+             <label id="searchbar">Search: <input type="text" placeholder="what are you looking for?" required></label>
+         </form>-->
+        <?php if (!$this->controller->isLoggedIn()) echo
+        " <div class=\"dropdown\">
+            <button class=\"dropbtn\">Sign In
+                <i class=\"fa fa-caret-down\"></i>
+            </button>
+            <div class=\"dropdown-content\">
+                <a href=\"index.php?action=login\">
+                    <button class=\"headerButton\">Log in</button>
+                </a>
+                <a href=\"index.php?action=signUp\">
+                    <button class=\"headerButton\">Sign Up</button>
+                </a>
+            </div>
+        </div>
+        "; ?>
 
-        <form action="index.php?action=search" method="post">
-            <label id="searchbar">Search: <input type="text" placeholder="what are you looking for?" required></label>
-        </form>
+        <?php if ($this->controller->isLoggedIn()) echo
+        "<a href=\"index.php?action=user_profile\">
+            <button class=\"headerButton\">Profile</button>
+        </a>"; ?>
 
+        <?php if ($this->controller->isLoggedIn()) echo
+        " <a href=\"index.php?action=logout\">
+            <button class=\"headerButton\">Logout</button>
+        </a>"; ?>
     </div>
+
 
     <div class="navbar">
         <?php render_navigation($language, $pageId); ?>

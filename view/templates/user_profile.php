@@ -1,1 +1,2 @@
-<a href="index.php?action=user_profile">Profile</a>
+<h1>Profile</h1>
+<p>I'm your profile</p>

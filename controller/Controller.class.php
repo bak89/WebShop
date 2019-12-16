@@ -7,6 +7,7 @@ class Controller
     private $title = "";
 
     // A C T I O N S
+    private $sessionState = false;
 
     public function home(Request $request)
     {
@@ -22,24 +23,39 @@ class Controller
         $this->title = "Contact Us";
     }
 
+    //All User
+
     public function aboutUs(Request $request)
     {
         $this->title = "About Us";
     }
 
-    //All User
+    // A D M I N  ONLY
+    // USER
 
-   /* public function user_Profile(Request $request){
-        $this->title = "Profile";
+    public function user_Profile(Request $request)
+    {
         if (!$this->isLoggedIn()) {
             $this->data['message'] = "To update a User, please login first!";
             return 'login';
         }
+        $this->title = "Profile";
+        $this->data["message"] = "Hello World!";
 
-    }*/
+    }
 
-    // A D M I N  ONLY
-    // USER
+    public function isLoggedIn()
+    {
+        $this->startSession();
+        return isset($_SESSION['user']);
+    }
+
+    private function startSession()
+    {
+        if ($this->sessionState == false) {
+            $this->sessionState = session_start();
+        }
+    }
 
     public function list_users(Request $request)
     {
@@ -51,12 +67,24 @@ class Controller
         $this->data["users"] = User::getUser($sort);
     }
 
+    // PRODUCT
+
+    public function isAdmin()
+    {
+        $this->startSession();
+        if (!isset($_SESSION['userType'])) {
+            return false;
+        } else {
+            return $_SESSION['userType'] == 'admin';
+        }
+    }
+
     public function edit_user(Request $request)
     {
-       /* if (!$this->isAdmin()) {
-            $this->data['message'] = "To edit a User, please login first!";
-            return 'login';
-        }*/
+        /* if (!$this->isAdmin()) {
+             $this->data['message'] = "To edit a User, please login first!";
+             return 'login';
+         }*/
         $id = $request->getParameter('id', 0);
         $user = User::getUserById($id);
         if (!$user) {
@@ -65,12 +93,18 @@ class Controller
         $this->data['user'] = $user;
     }
 
+    private function page404()
+    {
+        header('HTTP/1.1 404 Not Found');
+        return 'page404';
+    }
+
     public function update_user(Request $request)
     {
-       /* if (!$this->isAdmin()) {
-            $this->data['message'] = "To update a User, please login first!";
-            return 'login';
-        }*/
+        /* if (!$this->isAdmin()) {
+             $this->data['message'] = "To update a User, please login first!";
+             return 'login';
+         }*/
         $values = $request->getParameter('user', array());
         $user = User::getUserById($values['id']);
         if (!$user) {
@@ -89,6 +123,12 @@ class Controller
         return $this->internalRedirect('list_users', $request);
     }
 
+    private function internalRedirect($action, $request)
+    {
+        $tpl = $this->$action($request);
+        return $tpl ? $tpl : $action;
+    }
+
     public function delete_user(Request $request)
     {
         $id = $request->getParameter('id', 0);
@@ -103,13 +143,14 @@ class Controller
         exit();
     }
 
-    // PRODUCT
+    //LOGIN
+
     public function addProduct(Request $request)
     {
-       /* if (!$this->isAdmin()) {
-            $this->data['message'] = "To add a Product, please login first!";
-            return 'login';
-        }*/
+        /* if (!$this->isAdmin()) {
+             $this->data['message'] = "To add a Product, please login first!";
+             return 'login';
+         }*/
         $values = $request->getParameter('product', array());
         $product = Product::insert($values);
         if (!$product) {
@@ -118,6 +159,7 @@ class Controller
         $this->data['message'] = "Product created successfully!";
         return 'home';
     }
+
     public function add_product(Request $request)
     {
         $this->title = "Add Product";
@@ -135,10 +177,10 @@ class Controller
 
     public function edit_product(Request $request)
     {
-       /* if (!$this->isLoggedIn()) {
-            $this->data['message'] = "To edit a Product, please login first!";
-            return 'login';
-        }*/
+        /* if (!$this->isLoggedIn()) {
+             $this->data['message'] = "To edit a Product, please login first!";
+             return 'login';
+         }*/
         $id = $request->getParameter('id', 0);
         $product = Product::getProductById($id);
         if (!$product) {
@@ -164,12 +206,15 @@ class Controller
         //return 'list_students';
 
         // external redirect
-       // header('Location: index.php?action=list_products');
+        // header('Location: index.php?action=list_products');
         //exit();
 
         //internal page redirect
         return $this->internalRedirect('list_products', $request);
     }
+
+
+    // H E L P E R S
 
     public function delete_product(Request $request)
     {
@@ -185,7 +230,6 @@ class Controller
         exit();
     }
 
-    //LOGIN
     public function login(Request $request)
     {
         $login = $request->getParameter('login', '');
@@ -223,6 +267,9 @@ class Controller
         return 'home';
     }
 
+
+    // P R I V A T E  H E L P E R S
+
     public function signUp(Request $request)
     {
         $this->title = "Sign Up";
@@ -233,57 +280,14 @@ class Controller
         throw new Exception("The action '$function' does not exist!");
     }
 
-
-    // H E L P E R S
-
     public function &getData()
     {
         return $this->data;
     }
 
-    public function isLoggedIn()
-    {
-        $this->startSession();
-        return isset($_SESSION['user']);
-    }
-
-    public function isAdmin()
-    {
-        $this->startSession();
-        if(! isset($_SESSION['userType'])){
-            return false;
-        } else{
-            return $_SESSION['userType']=='admin';
-        }
-    }
-
     public function getTitle()
     {
         return $this->title;
-    }
-
-
-    // P R I V A T E  H E L P E R S
-
-    private $sessionState = false;
-
-    private function startSession()
-    {
-        if ($this->sessionState == false) {
-            $this->sessionState = session_start();
-        }
-    }
-
-    private function page404()
-    {
-        header('HTTP/1.1 404 Not Found');
-        return 'page404';
-    }
-
-    private function internalRedirect($action, $request)
-    {
-        $tpl = $this->$action($request);
-        return $tpl ? $tpl : $action;
     }
 
 }
