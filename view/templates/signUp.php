@@ -1,5 +1,5 @@
 <div>
-    <h1>Register</h1>
+    <h1>Sign Up</h1>
     <form class="ui form" action="index.php?action=signUpUser" method="post">
         <div class="field">
             <label>Name</label>

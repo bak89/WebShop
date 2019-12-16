@@ -5,19 +5,19 @@ header{
 }
 
 .headerButton{
-    float: left;
+    float: right;
     margin: 10px;
 }
 
 #searchbar{
-    float:right;
+    float: left;
     margin: 10px;
 }
 
 /* code for navbar from W3schools */
 /* Navbar container */
 .navbar {
-    float: right;
+    float: top;
     overflow: hidden;
     background-color: #333;
     font-family: Arial;
@@ -27,7 +27,7 @@ header{
 .navbar a {
     float: left;
     font-size: 16px;
-    color: black;
+    color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -60,8 +60,8 @@ header{
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
+    background-color: #ff7934;
+    min-width: 60px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
