@@ -44,6 +44,7 @@ require_once('lib/helper.php');
 
 
     <div class="navbar">
+
         <?php render_navigation($language, $pageId); ?>
         <div id="languages"><?php render_languages($language, $pageId); ?></div>
     </div>

@@ -4,7 +4,7 @@
 require_once 'autoloader.php';
 
 $request = new Request();
-//$action = isset($_GET['action']) ? $_GET['action'] : 'home';
+
 $action = $request->getParameter('action', 'home');
 $languages = $request->getParameter('language', 'en');
 
