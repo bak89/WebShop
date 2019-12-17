@@ -91,7 +91,8 @@ class Product
 
     public function save()
     {
-        $sql = sprintf("UPDATE products SET productType='%s',productName='%s', productDescriptionDE='%s', productDescriptionIT='%s', productDescriptionEN='%s', price='%d', productImage='%s'  WHERE ID= %d;", $this->productType, $this->productName, $this->productDescriptionDE, $this->productDescriptionIT, $this->productDescriptionEN, $this->productPrice, $this->productImage);
+        $sql = sprintf("UPDATE products SET productType='%s',productName='%s', productDescriptionDE='%s', productDescriptionIT='%s', productDescriptionEN='%s', productPrice='%d', productImage='%s'  WHERE ID= %d;", $this->productType, $this->productName, $this->productDescriptionDE, $this->productDescriptionIT, $this->productDescriptionEN, $this->productPrice, $this->productImage, $this->ID);
+        echo "<!-- SQL: $sql -->";
         $res = DB::doQuery($sql);
         return $res != null;
     }

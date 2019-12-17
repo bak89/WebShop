@@ -16,6 +16,9 @@ class View {
 		foreach($this->controller->getData() as $key=>$value) {
 			$$key = $value;
 		}
+		/*function t($key) {
+		    // return i18n->t($key);
+        }*/
 		$title = $this->controller->getTitle();
 		$title = "GA*AG" .($title ? " - ".$title : "");
 		include __DIR__ ."/templates/main.php";
