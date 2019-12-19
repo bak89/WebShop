@@ -10,7 +10,36 @@ require_once('lib/helper.php');
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/cart.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">
+<!--start from here-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function(){
+            $('#form').submit(function(e){
+                e.preventDefault();
+                //AJAX
+                $.ajax({
+                    url: 'ajax-cart.php',
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        //alert("Hello World " + response);
+                        //location.reload();
+                        // Update cart
+                        //$('#cart').append('<tr><td>...</td><td>....</td></tr>');
+                        $('#cart-holder').fadeOut(500, function(){
+                            $(this).empty().append(response).fadeIn(500);
+                        });
+                    },
+                    error: function() {
+                        console.log("Uppppsssss....");
+                    }
+                });
+            });
+        });
+    </script>
+    <!--to here-->
 </head>
 <body>
 <header>
@@ -40,6 +69,10 @@ require_once('lib/helper.php');
         " <a href=\"index.php?action=logout\">
             <button class=\"headerButton\">Logout</button>
         </a>"; ?>
+
+        <a href="index.php?action=cart">
+            <button class="headerButton">Cart</button>
+        </a>
     </div>
 
 

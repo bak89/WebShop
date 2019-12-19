@@ -26,6 +26,11 @@ class Controller
         $this->title = "About Us";
     }
 
+    public function cart(Request $request)
+    {
+        $this->title = "Cart";
+    }
+
     // USER
 
     public function user_Profile(Request $request)

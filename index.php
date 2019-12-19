@@ -1,8 +1,19 @@
 <?php
-// F R O N T   C O N T R O L L E R
-
 require_once 'autoloader.php';
 
+//Start form here
+//session_start();
+
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = new Cart();
+}
+$cart = $_SESSION['cart'];
+
+if (isset($_POST['item'])) {
+    $item = $_POST['item'];
+    $cart->updateItem($item['id'], $item['num']);
+}
+//to here
 $request = new Request();
 
 $action = $request->getParameter('action', 'home');
@@ -13,6 +24,8 @@ if (!DB::create('localhost', 'root', '', 'webshop')) {
     die("Unable to connect to database [" . DB::getInstance()->connect_error . "]");
 }
 
+
+// F R O N T   C O N T R O L L E R
 try {
     // Create controller
     $controller = new Controller();

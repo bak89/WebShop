@@ -32,7 +32,7 @@ function render_navigation($language, $pageId)
     $urlBase = $_SERVER['PHP_SELF'];
     add_param($urlBase, "lang", $language);
 
-    $navs = array('new', 'clothing', 'moviestv', 'gaming', 'anime', 'sale');
+    $navs = array('Home', 'Man', 'Woman', 'Gift');
     foreach ($navs as $nav) {
         $url = $urlBase;
         add_param($url, "id", $nav);
