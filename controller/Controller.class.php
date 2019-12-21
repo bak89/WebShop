@@ -29,6 +29,7 @@ class Controller
     public function cart(Request $request)
     {
         $this->title = "Cart";
+        $this->startSession();
     }
 
     // USER
@@ -112,32 +113,20 @@ class Controller
 
     public function addProduct(Request $request)
     {
-        /* if (!$this->isAdmin()) {
-             $this->data['message'] = "To add a Product, please login first!";
-             return 'login';
-         }*/
         $values = $request->getParameter('product', array());
         $product = Product::insert($values);
         if (!$product) {
             return $this->page404();
         }
         $this->data['message'] = "Product created successfully!";
-        return 'home';
+        //external redirect
+        header('Location: index.php?action=home');
+        exit();
     }
 
     public function add_product(Request $request)
     {
         $this->title = "Add Product";
-    }
-
-    public function list_products(Request $request)
-    {
-        if (!$this->isLoggedIn()) {
-            $this->data['message'] = "To update a Product, please login first!";
-            return 'login';
-        }
-        $sort = $request->getParameter('sort', 'id');
-        $this->data["products"] = Product::getProduct($sort);
     }
 
     public function edit_product(Request $request)
@@ -175,7 +164,7 @@ class Controller
         //exit();
 
         //internal page redirect
-        return $this->internalRedirect('list_products', $request);
+        return $this->internalRedirect('home', $request);
     }
 
     public function delete_product(Request $request)
@@ -188,7 +177,7 @@ class Controller
         $product = Product::delete($id);
 
         //external redirect
-        header('Location: index.php?action=list_products');
+        header('Location: index.php?action=home');
         exit();
     }
 
@@ -208,7 +197,9 @@ class Controller
         $_SESSION['user'] = $login;
         $_SESSION['userType'] = $user->getUserType();
         $this->data['message'] = "Hi " . ucfirst($login) . ", you just logged in!";
-        return 'home';
+        //external redirect
+        header('Location: index.php?action=home');
+        exit();
     }
 
     public function logout(Request $request)

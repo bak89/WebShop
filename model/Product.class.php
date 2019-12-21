@@ -59,8 +59,8 @@ class Product
 
     static public function insert($values)
     {
-        if ($stmt = DB::getInstance()->prepare("INSERT INTO products (productType , productName,productDescriptionDE,productDescriptionIT,productDescriptionEN,productPrice) VALUE (?,?,?,?,?,?,?)")) {
-            if ($stmt->bind_param('ssssss', $values['type'], $values['name'], $values['descriptionDE'], $values['descriptionIT'], $values['descriptionEN'], $values['price'])) {
+        if ($stmt = DB::getInstance()->prepare("INSERT INTO products (productType , productName,productDescriptionDE,productDescriptionIT,productDescriptionEN,productPrice,productImage) VALUE (?,?,?,?,?,?,?)")) {
+            if ($stmt->bind_param('sssssss', $values['productType'], $values['productName'], $values['productDescriptionDE'], $values['productDescriptionIT'], $values['productDescriptionEN'], $values['productPrice'],$values['productImage'])) {
                 if ($stmt->execute()) {
                     return true;
                 }
@@ -86,7 +86,7 @@ class Product
         $this->productDescriptionIT = $db->escape_string($values['productDescriptionIT']);
         $this->productDescriptionEN = $db->escape_string($values['productDescriptionEN']);
         $this->productPrice = (double)$values['productPrice'];
-       // $this->productImage = $db->escape_string($values['productImage']);
+        $this->productImage = $db->escape_string($values['productImage']);
     }
 
     public function save()
