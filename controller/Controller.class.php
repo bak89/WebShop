@@ -208,7 +208,8 @@ class Controller
         session_destroy();
         $_SESSION = array();
         $this->data['message'] = "Bye Bye!";
-        return 'home';
+        header('Location: index.php?action=home');
+        exit();
     }
 
     public function signUpUser(Request $request)

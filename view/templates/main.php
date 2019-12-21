@@ -12,6 +12,11 @@ if (isset($_POST['item'])) {
     $cart->updateItem($item['id'], $item['num']);
 }
 
+if (isset($_POST['amount'])) {
+    $amount = $_POST['amount'];
+    $id = $_POST['order_id'];
+    $cart->setItem($id, $amount);
+}
 ?>
 
 <!DOCTYPE html>
@@ -24,31 +29,35 @@ if (isset($_POST['item'])) {
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/cart.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">
-<!--start from here-->
+    <!--start from here-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
-        $(function(){
-            $('#form').submit(function(e){
+        $(function () {
+            $('.Add2Cart').submit(function (e) {
                 e.preventDefault();
                 //AJAX
                 $.ajax({
                     url: 'ajax-cart.php',
                     type: 'POST',
                     data: $(this).serialize(),
-                    success: function(response) {
+                    success: function (response) {
                         //alert("Hello World " + response);
                         //location.reload();
                         // Update cart
                         //$('#cart').append('<tr><td>...</td><td>....</td></tr>');
-                        $('#cart-holder').fadeOut(500, function(){
+                        $('#cart-holder').fadeOut(500, function () {
                             $(this).empty().append(response).fadeIn(500);
                         });
+                        //$('.classname').text(amount);
                     },
-                    error: function() {
+                    error: function () {
                         console.log("Uppppsssss....");
                     }
                 });
             });
+            $('.updateCart').bind('keyup mouseup', function () {
+                $(this).closest('form').submit();
+            })
         });
     </script>
     <!--to here-->
