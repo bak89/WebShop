@@ -8,14 +8,13 @@
 foreach ($products as $product) {
     $id = $product->getID();
     $image = $product->getProductImage();
-    if ($this->controller->isAdmin()){
-        echo "<span class=\"product\">$product</span><img src='assets/images/$image'> <a href=\"index.php?action=edit_product&id=$id\">Edit</a> | <a href=\"index.php?action=delete_product&id=$id\">Delete</a><br/>";
-    } else{
+    echo "<span class=\"product\">$product</span><img src='assets/images/$image'>";
+    if ($this->controller->isAdmin()) {
+        echo "<a href=\"index.php?action=edit_product&id=$id\">Edit</a> | <a href=\"index.php?action=delete_product&id=$id\">Delete</a><br/>";
+    } else {
         ?>
-        <span class="product"><?=$product?></span><img src='assets/images/<?=$image?>'><br/>
-
         <form class="Add2Cart" method="post">
-            <input hidden name="item[id]" value="<?=$id?>"/><br/>
+            <input hidden name="item[id]" value="<?= $id ?>"/><br/>
             <input hidden name="item[num]" type="number" value="1"/><br/>
             <input type="submit" value="Add"/>
         </form>
