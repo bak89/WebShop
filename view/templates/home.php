@@ -10,7 +10,7 @@ foreach ($products as $product) {
     $image = $product->getProductImage();
     echo "<span class=\"product\">$product</span><img src='assets/images/$image'>";
     if ($this->controller->isAdmin()) {
-        echo "<a href=\"index.php?action=edit_product&id=$id\">Edit</a> | <a href=\"index.php?action=delete_product&id=$id\">Delete</a><br/>";
+        echo "<br><a href=\"index.php?action=edit_product&id=$id\">Edit</a> | <a href=\"index.php?action=delete_product&id=$id\">Delete</a><br/>";
     } else {
         ?>
         <form class="Add2Cart" method="post">
