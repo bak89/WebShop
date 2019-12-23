@@ -3,26 +3,30 @@
     display: inline-grid;
     grid-template-columns: auto auto auto auto;
     grid-gap: 20px 20px;
+    width: 100vw;
 }
 
 .product-container{
     background-color: #333333;
     border-radius: 25px;
-    padding: 20px;
-    margin: 20px;
+    padding: 10px;
+    margin: 5px;
     width: 20vw;
     overflow: auto;
     align-content: center;
+    text-align: center;
 }
 
 .prod-img{
     width: 18vw;
     alignment: center;
+    border-radius: 25px;
 }
 
 .name{
     alignment: center;
     color: white;
+    font-size: 20px;
 }
 
 a {
