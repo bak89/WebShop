@@ -34,7 +34,13 @@ class Controller
 
     public function product_page(Request $request)
     {
-        $this->title = "Product Page";
+       /* $this->title = "Product Page";
+        $id = $request->getParameter('id', 0);
+        $product = Product::getProductById($id);
+        if (!$product) {
+            return $this->page404();
+        }
+        $this->data['product'] = $product;*/
     }
 
     // USER
@@ -151,7 +157,7 @@ class Controller
     public function update_product(Request $request)
     {
         if (!$this->isAdmin()) {
-            $this->data['message'] = "To update a User, please login first!";
+            $this->data['message'] = "To update a Product, please login first!";
             return 'login';
         }
         $values = $request->getParameter('product', array());

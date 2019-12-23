@@ -11,7 +11,8 @@
     $image = $product->getProductImage();
     $name = $product->getProductName();
 
-    echo "<a id=\"product-page\" href='index.php?action=product_page'>";
+    echo "<a id=\"product-page\" href='index.php?action=product_page&id=$id'>";
+    //id?
     echo "<div class=product-container>";
 
     echo "<p class='name' class=\"prod-name\">$name</p>";
