@@ -32,6 +32,11 @@ class Controller
         $this->startSession();
     }
 
+    public function product_page(Request $request)
+    {
+        $this->title = "Product Page";
+    }
+
     // USER
 
     public function user_Profile(Request $request)

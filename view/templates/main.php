@@ -28,6 +28,7 @@ if (isset($_POST['amount'])) {
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/cart.css">
+    <link rel="stylesheet" href="assets/css/home.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">
     <!--start from here-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

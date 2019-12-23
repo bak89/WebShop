@@ -1,0 +1,30 @@
+
+.product-gallery{
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 20px 20px;
+}
+
+.product-container{
+    background-color: #333333;
+    border-radius: 25px;
+    padding: 20px;
+    margin: 20px;
+    width: 20vw;
+    overflow: auto;
+    align-content: center;
+}
+
+.prod-img{
+    width: 18vw;
+    alignment: center;
+}
+
+.name{
+    alignment: center;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
