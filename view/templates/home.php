@@ -18,7 +18,7 @@ foreach ($products as $product) {
         echo "<img class='prod-img' src='assets/images/$image'>";
 
     if ($this->controller->isAdmin()) {
-        echo "<a href=\"index.php?action=edit_product&id=$id\">Edit</a> | <a href=\"index.php?action=delete_product&id=$id\">Delete</a><br/>";
+        echo "<br><a href=\"index.php?action=edit_product&id=$id\">Edit</a> | <a href=\"index.php?action=delete_product&id=$id\">Delete</a><br/>";
     } else {
         ?>
 </div>

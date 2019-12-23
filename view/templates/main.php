@@ -127,10 +127,20 @@ if (isset($_POST['amount'])) {
         </div>
 
         <div class="col-3">
-            <p class="footernav-item"><a id="MyAccount" href="index.php?action=login" class="footernav-item">
+             <?php if (!$this->controller->isLoggedIn()) {
+                 echo"
+            <p class=\"footernav-item\"><a id=\"MyAccount\" href=\"index.php?action=login\" class=\"footernav-item\">
                     <span>My Account</span>
                 </a>
-            </p>
+            </p>";
+                 }else{
+                 echo"
+            <p class=\"footernav-item\"><a id=\"MyAccount\" href=\"index.php?action=user_Profile\" class=\"footernav-item\">
+                    <span>My Account</span>
+                </a>
+            </p>";
+
+             }?>
             <p class="footernav-item"><a id="CreateAccount" href="index.php?action=signUp" class="footernav-item">
                     <span>Create Account</span>
                 </a>
