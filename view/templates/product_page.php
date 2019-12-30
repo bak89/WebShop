@@ -1,4 +1,5 @@
 <?php
+
 $id = $product->getID();
 $image = $product->getProductImage();
 $name = $product->getProductName();
