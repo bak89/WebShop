@@ -1,17 +1,31 @@
 header{
     background: #ff7934;
     text-align: center;
-    font-family: Poppins;
+    width: 100%;
 }
 
-.headerButton{
-    float: right;
-    margin: 10px;
+.logo{
+    font-family: 'Bangers', cursive;
+    font-size: 100px;
+    alignment: center;
+    padding: 0;
+    margin: 0;
 }
+
+#cart-btn{
+    max-width: 30px;
+    float: right;
+}
+
 
 #searchbar{
     float: left;
     margin: 10px;
+}
+
+.navbar-links a{
+    float: left;
+    width: 100%;
 }
 
 /* code for navbar from W3schools */
@@ -25,7 +39,7 @@ header{
 
 /* Links inside the navbar */
 .navbar a {
-    float: left;
+    float: right;
     font-size: 16px;
     color: white;
     text-align: center;

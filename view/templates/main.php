@@ -29,6 +29,7 @@ if (isset($_POST['amount'])) {
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/cart.css">
     <link rel="stylesheet" href="assets/css/home.css">
+    <link href="https://fonts.googleapis.com/css?family=Bangers&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">
     <!--start from here-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -65,8 +66,10 @@ if (isset($_POST['amount'])) {
 </head>
 <body>
 <header>
-    <p>GA*AG</p>
-    <div class="navbar">
+    <div class="banner">
+        <p class="logo">GA*AG</p>
+    </div>
+    <div class="navbar" id="navbar-top">
         <form action="index.php?action=search" method="post">
             <label id="searchbar">Search: <input type="text" placeholder="what are you looking for?" required></label>
         </form>
@@ -93,12 +96,12 @@ if (isset($_POST['amount'])) {
         </a>"; ?>
 
         <a href="index.php?action=cart">
-            <button class="headerButton">Cart</button>
+            <img src="assets/resources/shopping-cart.png" id="cart-btn">
         </a>
     </div>
 
 
-    <div class="navbar">
+    <div class="navbar" class="navbar-links">
 
         <?php render_navigation($language, $pageId); ?>
         <div id="languages"><?php render_languages($language, $pageId); ?></div>
