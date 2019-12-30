@@ -34,13 +34,8 @@ class Controller
 
     public function product_page(Request $request)
     {
-       /* $this->title = "Product Page";
-        $id = $request->getParameter('id', 0);
-        $product = Product::getProductById($id);
-        if (!$product) {
-            return $this->page404();
-        }
-        $this->data['product'] = $product;*/
+        $id = $_GET['id'];
+        $this->data["product"] = Product::getProductById($id);
     }
 
     // USER
