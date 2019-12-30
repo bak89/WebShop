@@ -1,0 +1,26 @@
+.container{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 20px;
+    alignment: center;
+}
+.img-container{
+    width: 100%;
+}
+
+.prod-img{
+    position: center;
+    max-width: 100%;
+}
+
+.btn{
+    background-color: #ff7934;
+    border: #ff7934;
+    border-radius: 25px;
+    padding: 5px;
+}
+
+.btn:hover{
+    background-color: #ffb64f;
+}
+
