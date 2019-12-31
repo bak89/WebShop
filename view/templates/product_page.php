@@ -16,7 +16,7 @@ $descEN = $product->getProductDescriptionEN();
         echo "<p class='description'>$descEN</p>";
         echo "<p class='price'>CHF $price</p>"
         ?>
-        <form class="Add2Cart" method="post">
+        <form class="Add2Cart" id="formCart" method="post">
             <input hidden name="item[id]" value="<?= $id ?>"/><br/>
             <input hidden name="item[num]" type="number" value="1"/><br/>
             <input class="btn" type="submit" value="Add to cart"/>

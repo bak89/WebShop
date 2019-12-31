@@ -38,6 +38,12 @@ class Controller
         $this->data["product"] = Product::getProductById($id);
     }
 
+    public function product_overview(Request $request)
+    {
+        $type = $_GET['id'];
+        $this->data["product"] = Product::getProductByType($type);
+    }
+
     // USER
 
     public function user_Profile(Request $request)

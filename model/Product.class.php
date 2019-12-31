@@ -137,4 +137,15 @@ class Product
         return null;
     }
 
+    static public function getProductByType($type)
+    {
+        $type = $type;
+        $res = DB::doQuery("SELECT * FROM products WHERE productType = $type");
+        if ($res) {
+            if ($product = $res->fetch_object(get_class())) {
+                return $product;
+            }
+        }
+        return null;
+    }
 }
