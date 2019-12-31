@@ -102,11 +102,23 @@ if (isset($_POST['amount'])) {
     </div>
 
 
-    <div class="navbar" class="navbar-links">
+    <!--<div class="navbar2">
 
-        <?php render_navigation($language, $pageId); ?>
-        <div id="languages"><?php render_languages($language, $pageId); ?></div>
-    </div>
+        </*?php render_navigation($language, $pageId); ?>
+        <div id="languages"></*?php render_languages($language, $pageId); ?></div>
+    </div>-->
+
+
+
+        <ul>
+            <li><a href="index.php?action=Home">Home</a></li>
+            <li><a href="index.php?action=Man">Man</a></li>
+            <li><a href="index.php?action=Woman">Woman</a></li>
+            <li style="float:right"><a class="active" href="DE">DE</a></li>
+            <li style="float:right"><a class="active" href="IT">IT</a></li>
+            <li style="float:right"><a class="active" href="EN">EN</a></li>
+        </ul>
+
     </div>
 
 
