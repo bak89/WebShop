@@ -112,8 +112,8 @@ if (isset($_POST['amount'])) {
 
         <ul>
             <li><a href="index.php?action=Home">Home</a></li>
-            <li><a href="index.php?action=Man">Man</a></li>
-            <li><a href="index.php?action=Woman">Woman</a></li>
+            <li><a href="index.php?action=product_overview&type=">Man</a></li>
+            <li><a href="index.php?action=product_overview&type=">Woman</a></li>
             <li style="float:right"><a class="active" href="DE">DE</a></li>
             <li style="float:right"><a class="active" href="IT">IT</a></li>
             <li style="float:right"><a class="active" href="EN">EN</a></li>

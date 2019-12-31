@@ -40,8 +40,8 @@ class Controller
 
     public function product_overview(Request $request)
     {
-        $type = $_GET['id'];
-        $this->data["product"] = Product::getProductByType($type);
+        $type = $_GET['type'];
+        $this->data["products"] = Product::getProductByType($type);
     }
 
     // USER
@@ -271,6 +271,19 @@ class Controller
     public function &getData()
     {
         return $this->data;
+    }
+
+    // L A N G U A G E S
+
+    // The translation function.
+    function t($key)
+    {
+        global $messages;
+        if (isset($messages[$key])) {
+            return $messages[$key];
+        } else {
+            return "[$key]";
+        }
     }
 
 
