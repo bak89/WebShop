@@ -3,8 +3,9 @@ require_once 'autoloader.php';
 
 $request = new Request();
 
+/*
 $action = $request->getParameter('action', 'home');
-$languages = $request->getParameter('language', 'en');
+$languages = $request->getParameter('language', 'en');*/
 
 // Inizialize model
 if (!DB::create('localhost', 'root', '', 'webshop')) {

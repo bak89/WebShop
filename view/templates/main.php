@@ -1,6 +1,7 @@
 <?php
-require_once('lib/helper.php');
+//require_once('lib/helper.php');
 require_once("autoloader.php");
+require_once("config.php");
 
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = new Cart();
@@ -102,22 +103,22 @@ if (isset($_POST['amount'])) {
     </div>
 
 
-    <!--<div class="navbar2">
+    <!--div class="navbar2">
 
-        </*?php render_navigation($language, $pageId); ?>
-        <div id="languages"></*?php render_languages($language, $pageId); ?></div>
+        </?php render_navigation($language, $page); ?>
+        <div id="languages"></?php render_languages($language, $page); ?></div>
     </div>-->
 
 
 
-        <ul>
-            <li><a href="index.php?action=Home">Home</a></li>
-            <li><a href="index.php?action=product_overview&type=men">Man</a></li>
-            <li><a href="index.php?action=product_overview&type=women">Woman</a></li>
-            <li><a href="index.php?action=product_overview&type=gift">Gift</a></li>
-            <li style="float:right"><a class="active" href="DE">DE</a></li>
-            <li style="float:right"><a class="active" href="IT">IT</a></li>
-            <li style="float:right"><a class="active" href="EN">EN</a></li>
+       <ul>
+            <li><a href="index.php?action=Home"><? echo $lang['home']?></a></li>
+            <li><a href="index.php?action=product_overview&type=men"><?echo $lang['men']?></a></li>
+            <li><a href="index.php?action=product_overview&type=women"><?echo $lang['women']?></a></li>
+            <li><a href="index.php?action=product_overview&type=gift"><?echo $lang['gift']?></a></li>
+            <li style="float:right"><a class="active" href="index.php?lang=de">DE</a></li>
+            <li style="float:right"><a class="active" href="index.php?lang=it">IT</a></li>
+            <li style="float:right"><a class="active" href="index.php?lang=en">EN</a></li>
         </ul>
 
     </div>

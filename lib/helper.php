@@ -20,14 +20,14 @@ function add_param(&$url, $name, $value)
 
 // Renders the page content for a certain page ID.
 // TODO in view class?
-function render_content($pageId)
+function render_content($page)
 {
-    echo t('content') . " $pageId";
+    echo t('content') . " $page";
 }
 
 // Renders the navigation for the passed language and page ID.
 // TODO in controller?
-function render_navigation($language, $pageId)
+function render_navigation($language, $page)
 {
     $urlBase = $_SERVER['PHP_SELF'];
     add_param($urlBase, "lang", $language);
@@ -36,18 +36,18 @@ function render_navigation($language, $pageId)
     foreach ($navs as $nav) {
         $url = $urlBase;
         add_param($url, "id", $nav);
-        $class = $pageId == $nav ? 'active' : 'inactive';
+        $class = $page == $nav ? 'active' : 'inactive';
         echo "<a class=\"$class\" href=\"$url\">" . t($nav) . "</a>";
     }
 }
 
 // Renders the language navigation.
 // TODO in controller?
-function render_languages($language, $pageId)
+function render_languages($language, $page)
 {
     $languages = array('en', 'de', 'it');
     $urlBase = $_SERVER['PHP_SELF'];
-    add_param($urlBase, 'id', $pageId);
+    add_param($urlBase, 'action', $page);
     foreach ($languages as $lang) {
         $url = $urlBase;
         $class = $language == $lang ? 'active' : 'inactive';
@@ -67,7 +67,7 @@ function t($key)
 }
 
 // Set langauage and page ID as global variables.
-$pageId = get_param('id', 0);
+$page = get_param('action', 'home');
 $language = get_param('lang', 'en');
 $messages = array();
 $fn = "messages/messages_$language.txt";

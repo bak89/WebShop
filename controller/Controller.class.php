@@ -275,8 +275,55 @@ class Controller
 
     // L A N G U A G E S
 
+    public function add_param(&$url, $name, $value)
+    {
+        $sep = strpos($url, '?') !== false ? '&' : '?';
+        $url .= $sep . $name . "=" . urlencode($value);
+        return $url;
+    }
+
+// Set langauage and page ID as global variables.
+    public function setLanguage(Request $request)
+    {
+    $this->page = $request->getParameter('action', null);
+    $language = $request->getParameter('lang','en');
+    //$messages = array();
+    $fn = "messages/$language.php";
+    $file = file($fn);
+    foreach ($file as $line) {
+        list($key, $val) = explode('=>', $line);
+        $messages[$key] = $val;
+    }
+    return $this;
+    }
+
+    function render_navigation($language, $page)
+    {
+        $urlBase = $_SERVER['PHP_SELF'];
+        add_param($urlBase, "lang", $language);
+
+        $navs = array('Home', 'Man', 'Woman', 'Gift');
+        foreach ($navs as $nav) {
+            $url = $urlBase;
+            add_param($url, "id", $nav);
+            $class = $page == $nav ? 'active' : 'inactive';
+            echo "<a class=\"$class\" href=\"$url\">" . t($nav) . "</a>";
+        }
+    }
+
+    function render_languages($language, $page)
+    {
+        $languages = array('en', 'de', 'it');
+        $urlBase = $_SERVER['PHP_SELF'];
+        add_param($urlBase, 'action', $page);
+        foreach ($languages as $lang) {
+            $url = $urlBase;
+            $class = $language == $lang ? 'active' : 'inactive';
+            echo "<a class=\"$class\" href=\"" . add_param($url, 'lang', $lang) . "\">" . strtoupper($lang) . "</a>";
+        }
+    }
     // The translation function.
-    function t($key)
+    public function t($key)
     {
         global $messages;
         if (isset($messages[$key])) {
