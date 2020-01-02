@@ -40,8 +40,8 @@ class Controller
 
     public function product_overview(Request $request)
     {
-        $type = $_GET['type'];
-        $this->data["products"] = Product::getProductByType($type);
+        $sort = $request->getParameter('sort', 'id');
+        $this->data["products"] = Product::getProduct($sort);
     }
 
     // USER
