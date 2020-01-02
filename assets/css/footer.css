@@ -7,7 +7,6 @@
     grid-template-columns: auto auto auto auto;
     grid-gap: 10px;
     background-color: #ff7934;
-    padding: 10px;
 }
 
 .col-2 {
