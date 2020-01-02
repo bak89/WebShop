@@ -24,9 +24,7 @@
         echo "<img class='prod-img' src='assets/images/$image'>";
         ?>
     </div>
-    <?php
-    echo "<p>CHF $price</p>"
-    ?>
+    <?php echo "<p class='price'>CHF $price</p>"; ?>
 </div>
 <?php
 }}
