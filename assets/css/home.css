@@ -40,7 +40,6 @@
 .image-container {
     width: auto;
     height: 40vh;
-    overflow: hidden;
     alignment: center;
     align-content: center;
 }

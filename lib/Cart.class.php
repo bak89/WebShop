@@ -2,12 +2,10 @@
 
 class Cart
 {
-
     // product id <-> num
     private $items = [];
 
-    public function addItem($itemId, $num)
-    {
+    public function addItem($itemId, $num) {
         if (isset($this->items[$itemId])) {
             $this->items[$itemId] += $num;
         } else {
@@ -15,18 +13,19 @@ class Cart
         }
     }
 
-    public function removeItem($itemId, $num)
-    {
+    public function removeItem($itemId, $num) {
         if (isset($this->items[$itemId])) {
             $this->items[$itemId] -= $num;
-            if ($this->items[$itemId] <= 0) {
+            $this->items;
+            if ($this->items[$itemId] = 0) {
                 unset($this->items[$itemId]);
             }
+        } else {
+            $this->items[$itemId] = $num;
         }
     }
 
-    public function updateItem($itemId, $num)
-    {
+    public function updateItem($itemId, $num) {
         if (isset($this->items[$itemId])) {
             $this->items[$itemId] += $num;
             if ($this->items[$itemId] <= 0) {
@@ -37,8 +36,7 @@ class Cart
         }
     }
 
-    public function getItems()
-    {
+    public function getItems() {
         return $this->items;
     }
 
@@ -71,13 +69,17 @@ class Cart
             echo "<tr><th>Article-ID</th><th>#</th></tr>";
             foreach ($this->items as $item => $num) {
                 $product = Product::getProductById($item);
+                var_dump($product);
+                $id = $product->getID();
                 echo "<tr><td>" . $product->getProductName() .
                     " </td><td><div class=\"plus & minus\">
                             <form class=\"Add2Cart\" method=\"post\">
                                 <input type='number' name='amount' class='updateCart' value='$num' min='1'>
                                 <input type='hidden' name='order_id' value='" . $product->getID() . "'>
                             </form>
-                       </div></td></tr>";
+                       </div></td>
+                       <td><button onclick='removeItem(".$id.")'>Remove</button></td>
+                       </tr>";
             }
             echo "<tr><th>TOTAL</th><th>" . $this->getTotal() . "</th></tr>";
             echo "</table></div>";

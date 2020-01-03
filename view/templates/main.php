@@ -10,7 +10,10 @@ $cart = $_SESSION['cart'];
 
 if (isset($_POST['item'])) {
     $item = $_POST['item'];
-    $cart->updateItem($item['id'], $item['num']);
+    if(isset($item)) {
+        $cart->updateItem($item['id'], $item['num']);
+    }
+
 }
 
 if (isset($_POST['amount'])) {
@@ -33,37 +36,11 @@ if (isset($_POST['amount'])) {
     <link rel="stylesheet" href="assets/css/product-page.css">
     <link href="https://fonts.googleapis.com/css?family=Bangers&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">
-    <!--start from here-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script>
-        $(function () {
-            $('.Add2Cart').submit(function (e) {
-                e.preventDefault();
-                //AJAX
-                $.ajax({
-                    url: 'ajax-cart.php',
-                    type: 'POST',
-                    data: $(this).serialize(),
-                    success: function (response) {
-                        //alert("Hello World " + response);
-                        //location.reload();
-                        // Update cart
-                        //$('#cart').append('<tr><td>...</td><td>....</td></tr>');
-                        $('#cart-holder').fadeOut(500, function () {
-                            $(this).empty().append(response).fadeIn(500);
-                        });
-                        //$('.classname').text(amount);
-                    },
-                    error: function () {
-                        console.log("Uppppsssss....");
-                    }
-                });
-            });
-            $('.updateCart').bind('keyup mouseup', function () {
-                $(this).closest('form').submit();
-            })
-        });
-    </script>
+    <script type="application/javascript" src="./scripts/cart.js"></script>
+    <!--start from here-->
+
+
     <!--to here-->
 </head>
 <body>
