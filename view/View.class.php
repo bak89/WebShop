@@ -21,6 +21,13 @@ class View {
         }*/
 		$title = $this->controller->getTitle();
 		$title = "GA*AG" .($title ? " - ".$title : "");
-		include __DIR__ ."/templates/main.php";
+		include __DIR__ . "/templates/main.php";
 	}
+
+    public function url_with_language($lang)
+    {
+        parse_str($_SERVER['QUERY_STRING'], $query_data);
+        $query_data['lang'] = $lang;
+        return basename($_SERVER['PHP_SELF']) . '?' . http_build_query($query_data);
+    }
 }

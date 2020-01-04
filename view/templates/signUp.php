@@ -3,11 +3,11 @@
     <form class="ui form" action="index.php?action=signUpUser" method="post">
         <div class="field">
             <label>Name</label>
-            <input id="name" type="text" name="user[name]" placeholder="Name & Lastname">
+            <input id="name" type="text" name="user[name]" placeholder="Name & Lastname" required>
         </div>
         <div class="field">
             <label>Email</label>
-            <input id="email" type="email" name="user[email]" placeholder="Your@mail.com">
+            <input id="email" type="email" name="user[email]" placeholder="Your@mail.com" required>
         </div>
         <div class="field">
             <label>Password</label>

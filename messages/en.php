@@ -1,4 +1,5 @@
 <?php
+
 $lang = array(
     "signin" => "Sign In",
     "login" => "Log In",
@@ -15,4 +16,3 @@ $lang = array(
     "errormail" => "Please enter a valid email address.",
 
 );
-?>

@@ -10,7 +10,7 @@ $cart = $_SESSION['cart'];
 
 if (isset($_POST['item'])) {
     $item = $_POST['item'];
-    if(isset($item)) {
+    if (isset($item)) {
         $cart->updateItem($item['id'], $item['num']);
     }
 
@@ -38,10 +38,7 @@ if (isset($_POST['amount'])) {
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="application/javascript" src="./scripts/cart.js"></script>
-    <!--start from here-->
 
-
-    <!--to here-->
 </head>
 <body>
 <header>
@@ -80,25 +77,29 @@ if (isset($_POST['amount'])) {
     </div>
 
 
-    <!--div class="navbar2">
+    <!--<div class="navbar2">
+
+        </?php $this->controller->render_navigation($language, $page); ?>
+        <div id="languages"></?php $this->controller->render_languages($language, $page); ?></div>
+    </div>-->
+
+    <!--<div class="navbar2">
 
         </?php render_navigation($language, $page); ?>
         <div id="languages"></?php render_languages($language, $page); ?></div>
     </div>-->
 
 
+    <ul>
+        <li><a class="active" href="index.php?action=home">Home</a></li>
+        <li><a href="index.php?action=product_overview&type=men">Men</a></li>
+        <li><a href="index.php?action=product_overview&type=women">Women</a></li>
+        <li><a href="index.php?action=product_overview&type=gift">Gift</a></li>
+        <li style="float:right"><a href="<?= $this->url_with_language('de') ?>">DE</a></li>
+        <li style="float:right"><a href="<?= $this->url_with_language('it') ?>">IT</a></li>
+        <li style="float:right"><a href="<?= $this->url_with_language('en') ?>">EN</a></li>
+    </ul>
 
-       <ul>
-            <li><a class="active" href="index.php?action=Home">Home</a></li>
-            <li><a href="index.php?action=product_overview&type=men">Men</a></li>
-            <li><a href="index.php?action=product_overview&type=women">Women</a></li>
-            <li><a href="index.php?action=product_overview&type=gift">Gift</a></li>
-            <li style="float:right"><a href="index.php?lang=de">DE</a></li>
-            <li style="float:right"><a href="index.php?lang=it">IT</a></li>
-            <li style="float:right"><a href="index.php?lang=en">EN</a></li>
-        </ul>
-
-    </div>
 
 
 </header>
@@ -122,20 +123,20 @@ if (isset($_POST['amount'])) {
         </div>
 
         <div class="col-3">
-             <?php if (!$this->controller->isLoggedIn()) {
-                 echo"
+            <?php if (!$this->controller->isLoggedIn()) {
+                echo "
             <p class=\"footernav-item\"><a id=\"MyAccount\" href=\"index.php?action=login\" class=\"footernav-item\">
                     <span>My Account</span>
                 </a>
             </p>";
-                 }else{
-                 echo"
+            } else {
+                echo "
             <p class=\"footernav-item\"><a id=\"MyAccount\" href=\"index.php?action=user_Profile\" class=\"footernav-item\">
                     <span>My Account</span>
                 </a>
             </p>";
 
-             }?>
+            } ?>
             <p class="footernav-item"><a id="CreateAccount" href="index.php?action=signUp" class="footernav-item">
                     <span>Create Account</span>
                 </a>

@@ -10,7 +10,7 @@ $lang = array(
     "aboutus" => "Über uns",
     "contactus" => "Contact Us",
     "myaccount" => "Mein Konto",
-    "account" => "Konto",
+    "profile" => "Mein Profil",
     "createaccount" => "Konto erstellen",
     "errormail" => "Bitte geben Sie eine gültige E - Mail - Adresse ein . ",
 );
