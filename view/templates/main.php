@@ -46,19 +46,19 @@ if (isset($_POST['amount'])) {
         <p class="logo">GA*AG</p>
     </div>
     <div class="navbar" id="navbar-top">
-        <form action="index.php?action=search" method="post">
-            <label id="searchbar">Search: <input type="text" placeholder="what are you looking for?" required></label>
+        <form action="index.php?action=search" method="post" id="searchbar">
+            <label>Search:</label><input type="text" placeholder="<?= $this->tr('search') ?>" required>
         </form>
         <?php if (!$this->controller->isLoggedIn()) echo
         " <div class=\"dropdown\">
-            <button class=\"dropbtn\">Sign In
+            <button class=\"dropbtn\">" . $this->tr('signIn') . "
                 <i class=\"fa fa-caret-down\"></i>
             </button>
             <div class=\"dropdown-content\">
-                <a href=\"index.php?action=login\">Log in</a>
-                <a href=\"index.php?action=signUp\">Sign Up</a>
+                <a href=\"" . $this->build_url('index.php', array('action' => 'login')) . '">' . $this->tr('logIn') . "</a>
+                <a href=\"" . $this->build_url('index.php', array('action' => 'signUp')) . '">' . $this->tr('signUp') . "</a>
             </div>
-        </div>
+          </div>
         "; ?>
 
         <?php if ($this->controller->isLoggedIn()) echo
@@ -73,35 +73,10 @@ if (isset($_POST['amount'])) {
 
         <a href="index.php?action=cart">
             <img src="assets/resources/shopping-cart.png" id="cart-btn">
+            <?= $cart->getTotal() ?>
         </a>
     </div>
-
-
-    <!--<div class="navbar2">
-
-        </?php $this->controller->render_navigation($language, $page); ?>
-        <div id="languages"></?php $this->controller->render_languages($language, $page); ?></div>
-    </div>-->
-
-    <!--<div class="navbar2">
-
-        </?php render_navigation($language, $page); ?>
-        <div id="languages"></?php render_languages($language, $page); ?></div>
-    </div>-->
-
-
-    <ul>
-        <li><a class="active" href="index.php?action=home">Home</a></li>
-        <li><a href="index.php?action=product_overview&type=men">Men</a></li>
-        <li><a href="index.php?action=product_overview&type=women">Women</a></li>
-        <li><a href="index.php?action=product_overview&type=gift">Gift</a></li>
-        <li style="float:right"><a href="<?= $this->url_with_language('de') ?>">DE</a></li>
-        <li style="float:right"><a href="<?= $this->url_with_language('it') ?>">IT</a></li>
-        <li style="float:right"><a href="<?= $this->url_with_language('en') ?>">EN</a></li>
-    </ul>
-
-
-
+    <?php $this->render_navbar() ?>
 </header>
 
 <?php include $innerTpl; ?>
@@ -123,24 +98,18 @@ if (isset($_POST['amount'])) {
         </div>
 
         <div class="col-3">
-            <?php if (!$this->controller->isLoggedIn()) {
-                echo "
-            <p class=\"footernav-item\"><a id=\"MyAccount\" href=\"index.php?action=login\" class=\"footernav-item\">
+            <?php if (!$this->controller->isLoggedIn()) { ?>
+                <p class="footernav-item"><a id="MyAccount" href="index.php?action=login" class="footernav-item">
                     <span>My Account</span>
-                </a>
-            </p>";
-            } else {
-                echo "
-            <p class=\"footernav-item\"><a id=\"MyAccount\" href=\"index.php?action=user_Profile\" class=\"footernav-item\">
-                    <span>My Account</span>
-                </a>
-            </p>";
-
-            } ?>
-            <p class="footernav-item"><a id="CreateAccount" href="index.php?action=signUp" class="footernav-item">
+                </a></p>
+                <p class="footernav-item"><a id="CreateAccount" href="index.php?action=signUp" class="footernav-item">
                     <span>Create Account</span>
-                </a>
-            </p>
+                </a></p>
+            <?php } else { ?>
+                <p class="footernav-item"><a id="MyAccount" href="index.php?action=user_profile" class="footernav-item">
+                    <span>My Account</span>
+                </a></p>
+             <?php } ?>
         </div>
 
         <!-- -->

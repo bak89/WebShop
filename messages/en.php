@@ -1,9 +1,9 @@
 <?php
 
 $lang = array(
-    "signin" => "Sign In",
-    "login" => "Log In",
-    "signup" => "Sign Up",
+    "signIn" => "Sign In",
+    "logIn" => "Log In",
+    "signUp" => "Sign Up",
     "home" => "Home",
     "men" => "Men",
     "women" => "Women",
@@ -14,5 +14,6 @@ $lang = array(
     "profile" => "Profile",
     "createaccount" => "Create Account",
     "errormail" => "Please enter a valid email address.",
-
+    "addToCart" => "Add to Cart",
+    "search" => "What are you looking for?",
 );

@@ -1,16 +1,18 @@
 <?php
 $lang = array(
-    "signin" => "Sign In",
+    "signIn" => "Sign In",
     "logIn" => "Anmelden",
-    "signup" => "Registrieren",
+    "signUp" => "Registrieren",
     "home" => "Home",
     "men" => "Männer",
     "women" => "Frauen",
-    "gift" => "gift",
+    "gift" => "Güft",
     "aboutus" => "Über uns",
     "contactus" => "Contact Us",
     "myaccount" => "Mein Konto",
     "profile" => "Mein Profil",
     "createaccount" => "Konto erstellen",
     "errormail" => "Bitte geben Sie eine gültige E - Mail - Adresse ein . ",
+    "addToCart" => "Üüü üü Üüüü",
+    "search" => "Wie bitte?",
 );

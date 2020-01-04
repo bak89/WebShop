@@ -40,39 +40,3 @@ function render_navigation($language, $page)
         echo "<a class=\"$class\" href=\"$url\">" . t($nav) . "</a>";
     }
 }
-
-// Renders the language navigation.
-// TODO in controller?
-function render_languages($language, $page)
-{
-    $languages = array('en', 'de', 'it');
-    $urlBase = $_SERVER['PHP_SELF'];
-    add_param($urlBase, 'action', $page);
-    foreach ($languages as $lang) {
-        $url = $urlBase;
-        $class = $language == $lang ? 'active' : 'inactive';
-        echo "<a class=\"$class\" href=\"" . add_param($url, 'lang', $lang) . "\">" . strtoupper($lang) . "</a>";
-    }
-}
-
-// The translation function.
-function t($key)
-{
-    global $messages;
-    if (isset($messages[$key])) {
-        return $messages[$key];
-    } else {
-        return "[$key]";
-    }
-}
-
-// Set langauage and page ID as global variables.
-$page = get_param('action', 'home');
-$language = get_param('lang', 'en');
-$messages = array();
-$fn = "messages/messages_$language.txt";
-$file = file($fn);
-foreach ($file as $line) {
-    list($key, $val) = explode('=', $line);
-    $messages[$key] = $val;
-}

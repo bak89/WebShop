@@ -14,16 +14,19 @@ class Controller
 
         $sort = $request->getParameter('sort', 'id');
         $this->data["products"] = Product::getProduct($sort);
+        $this->startSession();
     }
 
     public function contactUs(Request $request)
     {
         $this->title = "Contact Us";
+        $this->startSession();
     }
 
     public function aboutUs(Request $request)
     {
         $this->title = "About Us";
+        $this->startSession();
     }
 
     public function cart(Request $request)
@@ -36,6 +39,7 @@ class Controller
     {
         $id = $_GET['id'];
         $this->data["product"] = Product::getProductById($id);
+        $this->startSession();
     }
 
     public function product_overview(Request $request)
@@ -272,80 +276,6 @@ class Controller
     {
         return $this->data;
     }
-
-    // L A N G U A G E S
-    public function add_param(&$url, Request $request, $value){
-        $name = $request->getParameter('lang', null);
-        $sep = strpos($url, '?') !== false ? '&' : '?';
-        $url .= $sep . $name . "=" . urlencode($value);
-        return $url;
-    }
-    /*public function add_param(&$url, $name, $value)
-    {
-        $sep = strpos($url, '?') !== false ? '&' : '?';
-        $url .= $sep . $name . "=" . urlencode($value);
-        return $url;
-    }*/
-
-    public function render_content($page)
-    {
-        echo $this->t('content') . " $page";
-    }
-
-    public function render_navigation($language, $page)
-    {
-        $urlBase = $_SERVER['PHP_SELF'];
-        $this->add_param($urlBase, 'lang', $language);
-
-        $navs = array('Home', 'Man', 'Woman', 'Gift');
-        foreach ($navs as $nav) {
-            $url = $urlBase;
-            $this->add_param($url, "action", $nav);
-            $class = $page == $nav ? 'active' : 'inactive';
-            echo "<a class=\"$class\" href=\"$url\">" . t($nav) . "</a>";
-        }
-    }
-
-    public function render_languages($language, $page)
-    {
-        $languages = array('en', 'it', 'de');
-        $urlBase = $_SERVER['PHP_SELF'];
-        $this->add_param($urlBase, 'action', $page);
-        foreach ($languages as $lang) {
-            $url = $urlBase;
-            $class = $language == $lang ? 'active' : 'inactive';
-            echo "<a class=\"$class\" href=\"" . add_param($url, 'lang', $lang) . "\">" . strtoupper($lang) . "</a>";
-        }
-    }
-
-    // The translation function.
-    public function t($key)
-    {
-        global $messages;
-        if (isset($messages[$key])) {
-            return $messages[$key];
-        } else {
-            return "[$key]";
-        }
-    }
-
-    // Set langauage and page ID as global variables.
-    public function setLanguage(Request $request)
-    {
-        $this->page = $request->getParameter('action', 'home');
-        $language = $request->getParameter('lang','en');
-        //$messages = array();
-        $fn = "messages/$language.php";
-        $file = file($fn);
-        foreach ($file as $line) {
-            list($key, $val) = explode('=>', $line);
-            $messages[$key] = $val;
-        }
-        return $this;
-    }
-
-
-
 
     // P R I V A T E  H E L P E R S
 

@@ -17,7 +17,7 @@ class Cart
         if (isset($this->items[$itemId])) {
             $this->items[$itemId] -= $num;
             $this->items;
-            if ($this->items[$itemId] = 0) {
+            if ($this->items[$itemId] <= 0) {
                 unset($this->items[$itemId]);
             }
         } else {
@@ -38,11 +38,6 @@ class Cart
 
     public function getItems() {
         return $this->items;
-    }
-
-    public function setItem($itemId, $num)
-    {
-        $this->items[$itemId] = $num;
     }
 
     public function isEmpty()
@@ -69,7 +64,7 @@ class Cart
             echo "<tr><th>Article-ID</th><th>#</th></tr>";
             foreach ($this->items as $item => $num) {
                 $product = Product::getProductById($item);
-                var_dump($product);
+                // var_dump($product);
                 $id = $product->getID();
                 echo "<tr><td>" . $product->getProductName() .
                     " </td><td><div class=\"plus & minus\">

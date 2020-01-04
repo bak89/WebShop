@@ -1,8 +1,8 @@
 <?php
 $lang = array(
-    "signin" => "Accedi",
-    "login" => "Log In",
-    "signup" => "Registrati",
+    "signIn" => "Accedi",
+    "logIn" => "Log In",
+    "signUp" => "Registrati",
     "home" => "Home",
     "men" => "Uomo",
     "women" => "Donna",
@@ -13,5 +13,7 @@ $lang = array(
     "profile" => "Profilo",
     "createaccount" => "Crea un Account",
     "errormail" => "Inserire un indirizzo mail valido.",
+    "addToCart" => "Aggiungi al Carrello",
+    "search" => "Chevvoi?",
 );
 ?>

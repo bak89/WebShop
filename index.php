@@ -21,7 +21,7 @@ try {
     $tpl = $tpl ? $tpl : $action;
 
     // Create view
-    $view = new View($controller);
+    $view = new View($controller, $request);
     $view->render($tpl);
 } catch (Exception $e) {
     die("<h2>There was an ERROR!</h2><p>There was an error processing action '$action'!</p><code> -> " . $e->getMessage() . "</code>");
