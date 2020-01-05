@@ -12,6 +12,31 @@ class User
     private $Zip;
     private $City;
 
+    /**
+     * User constructor.
+     * @param $ID
+     * @param $Name
+     * @param $LastName
+     * @param $Email
+     * @param $Password
+     * @param $UserType
+     * @param $Street
+     * @param $Zip
+     * @param $City
+     */
+
+    public function __construct( $Name, $LastName, $Email, $Password, $Street, $Zip, $City)
+    {
+        $this->Name = $Name;
+        $this->LastName = $LastName;
+        $this->Email = $Email;
+        $this->Password = $Password;
+        $this->Street = $Street;
+        $this->Zip = $Zip;
+        $this->City = $City;
+    }
+
+
     static public function insert($values)
     {
         if ($stmt = DB::getInstance()->prepare("INSERT INTO users (Name,LastName, Email , Password, UserType,Street,Zip,City) VALUE (?,?,?,?,?,?,?,?)")) {
@@ -135,9 +160,9 @@ class User
         $this->City = $db->escape_string($values['city']);
     }
 
-    public function save($values)
+    public function save($user)
     {
-        $sql = sprintf("UPDATE users SET Name='%s',LastName='%s', Email='%s', Password='%s', UserType='%s',Street='%s',Zip='%s',City='%s' WHERE id = %d;", $this->Name, $this->LastName, $this->Email, $this->Password, $this->UserType, $this->Street, $this->Zip, $this->City, $this->ID);
+        $sql = sprintf("UPDATE users SET Name='%s',LastName='%s', Email='%s', Password='%s', UserType='%s',Street='%s',Zip='%s',City='%s' WHERE id = %d;", $user->Name, $user->LastName, $user->Email, $user->Password, $user->UserType, $user->Street, $user->Zip, $user->City);
         $res = DB::doQuery($sql);
         return $res != null;
     }

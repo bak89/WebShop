@@ -12,8 +12,10 @@
     $price = $product->getProductPrice();
 
     if($type == $selected){
-//cambia con bildurl
-    echo "<a id=\"product-page\" href='index.php?action=product_page&id=$id'>";
+
+    //echo "<a id=\"product-page\" href=\"".$this->build_url('index.php', array('action' => 'product_page'))."&id=$id \"></a>";
+
+   echo "<a id=\"product-page\" href='index.php?action=product_page&id=$id'>";
 
     echo "<div class=product-container>";
 
