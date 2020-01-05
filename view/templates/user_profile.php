@@ -1,10 +1,9 @@
 <?php
-$user = new User();
-//if ($this->controller->isLoggedIn())
+if ($this->controller->isLoggedIn())
 
-   // $user= $_GET['user'];
+   $current= $_SESSION['user'];
 
-
+    $user = User::getUserByEmail($current);
 
 ?>
 

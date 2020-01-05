@@ -72,6 +72,16 @@ class User
         return null;
     }
 
+    static public function getUserByEmail($email){
+        $res = DB::doQuery("SELECT * FROM users WHERE Email = '$email'");
+        if ($res) {
+            if ($user = $res->fetch_object(get_class())) {
+                return $user;
+            }
+        }
+        return null;
+    }
+
     public function getLastName()
     {
         return $this->LastName;
