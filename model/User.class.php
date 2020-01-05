@@ -135,7 +135,7 @@ class User
         $this->City = $db->escape_string($values['city']);
     }
 
-    public function save()
+    public function save($values)
     {
         $sql = sprintf("UPDATE users SET Name='%s',LastName='%s', Email='%s', Password='%s', UserType='%s',Street='%s',Zip='%s',City='%s' WHERE id = %d;", $this->Name, $this->LastName, $this->Email, $this->Password, $this->UserType, $this->Street, $this->Zip, $this->City, $this->ID);
         $res = DB::doQuery($sql);

@@ -1,5 +1,4 @@
 <?php
-//require_once('lib/helper.php');
 require_once("autoloader.php");
 
 if (!isset($_SESSION['cart'])) {
