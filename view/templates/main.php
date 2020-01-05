@@ -1,7 +1,6 @@
 <?php
 //require_once('lib/helper.php');
 require_once("autoloader.php");
-require_once("config.php");
 
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = new Cart();
@@ -62,7 +61,7 @@ if (isset($_POST['amount'])) {
         "; ?>
 
         <?php if ($this->controller->isLoggedIn()) echo
-            "<a href=\"" . $this->build_url('index.php', array('action' => 'user_Profile')) . " \">
+            "<a href=\"" . $this->build_url('index.php', array('action' => 'user_profile')) . " \">
             <button class=\"headerButton\">".$this->tr('profile')."</button>
         </a>"; ?>
 
@@ -115,7 +114,7 @@ if (isset($_POST['amount'])) {
                     </a></p>
             <?php } else { ?>
                 <p class="footernav-item"><a id="MyAccount"
-                                             href="<?= $this->build_url('index.php', array('action' => 'user_Profile')) ?>"
+                                             href="<?= $this->build_url('index.php', array('action' => 'user_profile')) ?>"
                                              class="footernav-item">
                         <span><?= $this->tr('profile') ?></span>
                     </a></p>
