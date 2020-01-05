@@ -20,9 +20,7 @@ if ( $register ) {
     }
 
     if ($formIsValid) {
-        $user = new User($register['name'],$register['lastname'],$register['email'],$register['password'],$register['street'],$register['zip'],$register['city']);
-        User::save($user);
-
+        User::insert($register);
         header("Location: index.php?action=home");
     }else{
         echo "<h1 style='color: red'>".$error."</h1>";

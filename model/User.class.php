@@ -12,35 +12,10 @@ class User
     private $Zip;
     private $City;
 
-    /**
-     * User constructor.
-     * @param $ID
-     * @param $Name
-     * @param $LastName
-     * @param $Email
-     * @param $Password
-     * @param $UserType
-     * @param $Street
-     * @param $Zip
-     * @param $City
-     */
-
-    public function __construct( $Name, $LastName, $Email, $Password, $Street, $Zip, $City)
-    {
-        $this->Name = $Name;
-        $this->LastName = $LastName;
-        $this->Email = $Email;
-        $this->Password = $Password;
-        $this->Street = $Street;
-        $this->Zip = $Zip;
-        $this->City = $City;
-    }
-
-
     static public function insert($values)
     {
-        if ($stmt = DB::getInstance()->prepare("INSERT INTO users (Name,LastName, Email , Password, UserType,Street,Zip,City) VALUE (?,?,?,?,?,?,?,?)")) {
-            if ($stmt->bind_param('ssssssss', $values['name'], $values['lastname'], $values['email'], $values['password'], $values['userType'], $values['street'], $values['zip'], $values['city'])) {
+        if ($stmt = DB::getInstance()->prepare("INSERT INTO users (Name, LastName, Email , Password, UserType,Street,Zip,City) VALUE (?,?,?,?,?,?,?,?)")) {
+            if ($stmt->bind_param('ssssssss', $values['name'], $values['lastname'],$values['email'], $values['password'], $values['userType'], $values['street'], $values['zip'], $values['city'])) {
                 if ($stmt->execute()) {
                     return true;
                 }
@@ -166,4 +141,5 @@ class User
         $res = DB::doQuery($sql);
         return $res != null;
     }
+
 }
