@@ -1,7 +1,10 @@
 {
-  "signin" : "Sign In",
-  "login" : "Log In",
-  "signup" : "Sign Up",
+  "addToCart" : "Add to Cart",
+  "search" : "What are you looking for?",
+  "signIn" : "Sign In",
+  "logIn" : "Log In",
+  "logOut" : "Log Out",
+  "signUp" : "Sign Up",
   "home" : "Home",
   "men" : "Men",
   "women" : "Women",

@@ -50,7 +50,7 @@ if (isset($_POST['amount'])) {
             <label>Search:</label><input type="text" placeholder="<?= $this->tr('search') ?>" required>
         </form>
         <?php if (!$this->controller->isLoggedIn()) echo
-        " <div class=\"dropdown\">
+            " <div class=\"dropdown\">
             <button class=\"dropbtn\">" . $this->tr('signIn') . "
                 <i class=\"fa fa-caret-down\"></i>
             </button>
@@ -62,13 +62,13 @@ if (isset($_POST['amount'])) {
         "; ?>
 
         <?php if ($this->controller->isLoggedIn()) echo
-        "<a href=\"index.php?action=user_profile\">
-            <button class=\"headerButton\">Profile</button>
+            "<a href=\"" . $this->build_url('index.php', array('action' => 'user_Profile')) . " \">
+            <button class=\"headerButton\">".$this->tr('profile')."</button>
         </a>"; ?>
 
         <?php if ($this->controller->isLoggedIn()) echo
-        " <a href=\"index.php?action=logout\">
-            <button class=\"headerButton\">Logout</button>
+            "<a href=\"" . $this->build_url('index.php', array('action' => 'logOut')) . " \">
+            <button class=\"headerButton\">".$this->tr('logOut')."</button>
         </a>"; ?>
 
         <a href="index.php?action=cart">
@@ -87,29 +87,39 @@ if (isset($_POST['amount'])) {
 
         <!-- link about us / account  -->
         <div class="col-1">
-            <p class="footernav-item"><a id="AboutUS" href="index.php?action=aboutUs" class="footernav-item">
-                    <span>About Us</span>
+            <p class="footernav-item"><a id="AboutUS"
+                                         href="<?= $this->build_url('index.php', array('action' => 'aboutus')) ?>"
+                                         class="footernav-item">
+                    <span><?= $this->tr('aboutus') ?></span>
                 </a>
             </p>
-            <p class="footernav-item"><a id="ContactUS" href="index.php?action=contactUs" class="footernav-item">
-                    <span>Contact Us</span>
+            <p class="footernav-item"><a id="ContactUS"
+                                         href="<?= $this->build_url('index.php', array('action' => 'contactus')) ?>"
+                                         class="footernav-item">
+                    <span><?= $this->tr('contactus') ?></span>
                 </a>
             </p>
         </div>
 
         <div class="col-3">
             <?php if (!$this->controller->isLoggedIn()) { ?>
-                <p class="footernav-item"><a id="MyAccount" href="index.php?action=login" class="footernav-item">
-                    <span>My Account</span>
-                </a></p>
-                <p class="footernav-item"><a id="CreateAccount" href="index.php?action=signUp" class="footernav-item">
-                    <span>Create Account</span>
-                </a></p>
+                <p class="footernav-item"><a id="MyAccount"
+                                             href="<?= $this->build_url('index.php', array('action' => 'login')) ?>"
+                                             class="footernav-item">
+                        <span><?= $this->tr('myaccount') ?></span>
+                    </a></p>
+                <p class="footernav-item"><a id="CreateAccount"
+                                             href="<?= $this->build_url('index.php', array('action' => 'signUp')) ?>"
+                                             class="footernav-item">
+                        <span><?= $this->tr('createaccount') ?></span>
+                    </a></p>
             <?php } else { ?>
-                <p class="footernav-item"><a id="MyAccount" href="index.php?action=user_profile" class="footernav-item">
-                    <span>My Account</span>
-                </a></p>
-             <?php } ?>
+                <p class="footernav-item"><a id="MyAccount"
+                                             href="<?= $this->build_url('index.php', array('action' => 'user_Profile')) ?>"
+                                             class="footernav-item">
+                        <span><?= $this->tr('profile') ?></span>
+                    </a></p>
+            <?php } ?>
         </div>
 
         <!-- -->

@@ -82,12 +82,14 @@ class View {
 	// The translation function.
 	public function tr($key)
 	{
-		return $this->messages[$key];
+	    return $this->messages[$key];
 	}
 
 	private function load_language() {
-		include 'messages/' . $this->language . '.php';
-		$this->messages = $lang;
-		// $this->messages = json_decode(file('messages/' . $this->language . '.json'));
+		//include 'messages/' . $this->language . '.php';
+		//$this->messages = $lang;
+        $contents = file_get_contents('messages/' . $this->language . '.json');
+        $contents = utf8_encode($contents);
+        $this->messages = json_decode($contents,true);
 	}
 }

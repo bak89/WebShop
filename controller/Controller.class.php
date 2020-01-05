@@ -23,6 +23,12 @@ class Controller
         $this->startSession();
     }
 
+    public function registred(Request $request)
+    {
+        $this->title = "Registred";
+        $this->startSession();
+    }
+
     public function aboutUs(Request $request)
     {
         $this->title = "About Us";
@@ -46,6 +52,7 @@ class Controller
     {
         $sort = $request->getParameter('sort', 'id');
         $this->data["products"] = Product::getProduct($sort);
+        $this->startSession();
     }
 
     // USER
@@ -58,7 +65,7 @@ class Controller
         }
         $this->title = "Profile";
         $this->data["message"] = "Hello World!";
-
+        $this->startSession();
     }
 
     // A D M I N  ONLY
@@ -87,11 +94,6 @@ class Controller
         $user->update($values);
         $user->save();
         $this->data['message'] = "User updated successfully!";
-        //return 'list_students';
-
-        // external redirect
-        //header('Location: index.php?action=list_students');
-        //exit();
 
         //internal page redirect
         return $this->internalRedirect('list_users', $request);
@@ -173,11 +175,6 @@ class Controller
         $product->update($values);
         $product->save();
         $this->data['message'] = "Product updated successfully!";
-        //return 'list_students';
-
-        // external redirect
-        // header('Location: index.php?action=list_products');
-        //exit();
 
         //internal page redirect
         return $this->internalRedirect('home', $request);
@@ -235,8 +232,9 @@ class Controller
         if (!$user) {
             return $this->page404();
         }
-        $this->data['message'] = "User created successfully!";
-        return 'home';
+       /* $this->data['message'] = "User created successfully!";
+        return 'home';*/
+       return 'registred';
     }
 
     public function signUp(Request $request)

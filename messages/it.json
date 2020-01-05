@@ -1,7 +1,8 @@
 {
-  "signin" : "Accedi",
-  "login" : "Log In",
-  "signup" : "Registrati",
+  "signIn" : "Accedi",
+  "logIn" : "Log In",
+  "logOut" : "Esci",
+  "signUp" : "Registrati",
   "home" : "Home",
   "men" : "Uomo",
   "women" : "Donna",
@@ -11,5 +12,7 @@
   "myaccount" : "Il mio Account",
   "profile" : "Profilo",
   "createaccount" : "Crea un Account",
-  "errormail" : "Inserire un indirizzo mail valido."
+  "errormail" : "Inserire un indirizzo mail valido.",
+  "addToCart" : "Aggiungi al Carrello",
+  "search" : "Chevvoi?"
 }

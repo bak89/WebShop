@@ -1,7 +1,10 @@
 {
-  "signin" : "Sign In",
+  "addToCart" : "Üüü üü Üüüü",
+  "search" : "Wie bitte?",
+  "signIn" : "Anmelden",
   "logIn" : "Anmelden",
-  "signup" : "Registrieren",
+  "logOut" : "Ausloggen",
+  "signUp" : "Registrieren",
   "home" : "Home",
   "men" : "Männer",
   "women" : "Frauen",
@@ -9,7 +12,7 @@
   "aboutus" : "Über uns",
   "contactus" : "Contact Us",
   "myaccount" : "Mein Konto",
-  "account" : "Konto",
+  "profile" : "Profil",
   "createaccount" : "Konto erstellen",
-  "errormail" : "Bitte geben Sie eine gültige E - Mail - Adresse ein . "
+  "errormail" : "Bitte geben Sie eine gültige E-Mail-Adresse ein."
 }
