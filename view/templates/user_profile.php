@@ -1,10 +1,8 @@
 <?php
-if ($this->controller->isLoggedIn())
-
-   $current= $_SESSION['user'];
-
+if ($this->controller->isLoggedIn()){
+    $current= $_SESSION['user'];
     $user = User::getUserByEmail($current);
-
+}
 ?>
 
 <h1>Profile</h1>
@@ -22,7 +20,8 @@ if ($this->controller->isLoggedIn())
     <p><label>Password</label><input name="user[password]" value="<?= $user->getPassword() ?>" type="password"/></p>
 
     <p>
-        <button type="submit">Save</button>
+        <button type="submit" name="save">Save</button>
     </p>
     <input type="hidden" name="user[id]" value="<?= $user->getID() ?>"/>
+    <input type="hidden" name="user[userType]" value="<?= $user->getUserType() ?>"/>
 </form>

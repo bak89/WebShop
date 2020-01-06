@@ -92,7 +92,7 @@ class Controller
             return $this->page404();
         }
         $user->update($values);
-        $user->save();
+        $user->save($user);
         $this->data['message'] = "User updated successfully!";
 
         //internal page redirect
