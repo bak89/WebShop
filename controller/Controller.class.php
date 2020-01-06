@@ -22,9 +22,9 @@ class Controller
         $this->startSession();
     }
 
-    public function registred(Request $request)
+    public function registered(Request $request)
     {
-        $this->title = "Registred";
+        $this->title = "Registered";
         $this->startSession();
     }
 
@@ -244,9 +244,9 @@ class Controller
         if (!$user) {
             return $this->page404();
         }
-       /* $this->data['message'] = "User created successfully!";
-        return 'home';*/
-       return 'registred';
+       $this->data['message'] = "User created successfully!";
+        header('Location: index.php?action=registered');
+        exit();
     }
 
     public function signUp(Request $request)
