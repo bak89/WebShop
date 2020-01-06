@@ -1,18 +1,20 @@
+
 .product-gallery {
     display: inline-grid;
-    grid-template-columns: 25% 25% 25% 25%;
-    grid-gap: 10px 10px;
-    width: fit-content;
-    padding: 20px;
-    alignment: center;
+    width: 90vw;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    margin-left: 15px;
+    padding: 0;
+    grid-template-columns: 23vw 23vw 23vw 23vw;
+    grid-gap: 1vw;
 }
 
 .product-container {
-    height: fit-content;
     background-color: #333333;
     border-radius: 25px;
-    padding: 20px;
     width: auto;
+    margin: 5px;
     height: 400px;
     overflow: hidden;
     align-content: center;
@@ -30,36 +32,22 @@
     }
 }
 
-/*.image-container{
-     width: 18vw;
-     height: 40vh;
-     overflow: hidden;
-     alignment: center;
-     align-content: center;
- }*/
-
 .image-container {
-    width: auto;
-    height: 40vh;
+    height: 250px;
+    overflow: hidden;
     alignment: center;
     align-content: center;
+    margin: 0;
+    padding: 0;
 }
 
 .prod-img {
     display: inline-block;
     border-radius: 25px;
-    max-width: 100%;
-    max-height: 100%;
+    height: 100%;
+    max-width: 80%;
     alignment: center;
 }
-
-/*.prod-img{
-    border-radius: 25px;
-    max-width: 100%;
-    max-height: 100%;
-    display: block;
-    alignment: center;
-}*/
 
 .name {
     alignment: center;
@@ -73,5 +61,19 @@ a {
 
 .price {
     color: white;
+}
+
+/* On screens that are 992px wide or less, go from four columns to two columns */
+@media screen and (max-width: 992px) {
+    .product-gallery{
+        grid-template-columns: 33% 33% 33%;
+    }
+}
+
+/* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .product-gallery {
+        grid-template-columns: 50% 50%;
+    }
 }
 
