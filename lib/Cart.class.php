@@ -64,19 +64,20 @@ class Cart
                 $product = Product::getProductById($item);
                 $id = $product->getID();
                 $id = (int)$id;
-                echo "<tr><td>" . $product->getProductName() .
-                    " </td><td><div class=\"plus & minus\">
-                            <button onclick='updateAmount(`+`, `item-" .$id . "`,`". $id ."`)'>+</button>
+                echo "<tr><td>" . $product->getProductName() . "</td><td><div class=\"plus & minus\">
+
+                           
                             <form class=\"Add2Cart\" method=\"post\">
                                 <input type='text' name='amount' class='updateCart item-" .$id. " ' value='$num' min='1'>
                                 <input type='hidden' name='order_id' value='" . $product->getID() . "'>
                             </form>
-                            <td><button onclick='updateAmount(`-`, `item-" .$id . "`,`". $id ."`)'>-</button></td>
-                       </div></td>
+                            <td><button class=\"pm-btn\" onclick='updateAmount(`-`, `item-" .$id . "`,`". $id ."`)'>-</button></td>
+                            <td><button class=\"pm-btn\" onclick='updateAmount(`+`, `item-" .$id . "`,`". $id ."`)'>+</button></td>
+                       </div></td>   
                        <td><button onclick='removeItem(".$id.")'>Remove</button></td>
                        </tr>";
             }
-            echo "<tr><th>TOTAL</th><th>" . $this->getTotal() . "</th></tr>";
+            echo "<tr><th id=\'total\'>TOTAL CHF</th><th>" . $this->getTotal() . "</th></tr>";
             echo "</table></div>";
         }
     }
