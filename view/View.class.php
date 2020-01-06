@@ -89,7 +89,7 @@ class View {
 		//include 'messages/' . $this->language . '.php';
 		//$this->messages = $lang;
         $contents = file_get_contents('messages/' . $this->language . '.json');
-        $contents = utf8_encode($contents);
+        //$contents = utf8_encode($contents);
         $this->messages = json_decode($contents,true);
 	}
 }

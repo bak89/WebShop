@@ -1,6 +1,6 @@
 {
-  "addToCart" : "Üüü üü Üüüü",
-  "search" : "Wie bitte?",
+  "addToCart" : "In den Warenkorb",
+  "search" : "Nach was suchen Sie?",
   "signIn" : "Anmelden",
   "logIn" : "Anmelden",
   "logOut" : "Ausloggen",
@@ -10,7 +10,7 @@
   "women" : "Frauen",
   "gift" : "Geschenk",
   "aboutus" : "Über uns",
-  "contactus" : "Contact Us",
+  "contactus" : "Kontakt",
   "myaccount" : "Mein Konto",
   "profile" : "Profil",
   "createaccount" : "Konto erstellen",
