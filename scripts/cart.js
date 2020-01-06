@@ -19,9 +19,19 @@ $(function () {
     })
 });
 
+let addItem = (id) => {
+    let formData = new FormData();
+    formData.append('mode', 'addItem');
+    formData.append('id', id);
+
+    fetch('./ajax-cart.php', {method: 'POST', body: formData})
+        .then((resp) => resp.json())
+        .then(function(data) {
+            console.log(data);
+        });
+};
+
 let removeItem = (id) => {
-    console.log(id);
-    let formData = new FormData;
     let data = {
         'mode': 'removeItem',
         'id': id,
@@ -32,10 +42,24 @@ let removeItem = (id) => {
         type: "POST",
         data:  data,
         success: function (response) {
-            $("#cart-holder").fadeOut(500, function () {
-                $(this).empty().append(response).fadeIn(500);
-            });
-            $('.classname').text('amount');
+          console.log(response);
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("Status: " + textStatus); alert("Error: " + errorThrown);
         }
     });
+    window.location.reload();
+};
+
+let updateAmount = (op, name, id) => {
+    let element = document.querySelector('.'+ name);
+    if(op === '+') {
+        element.value++;
+        addItem(id);
+    } else {
+        if(element.value > 0) {
+            element.value--;
+            removeItem(id);
+        }
+    }
 };

@@ -40,13 +40,11 @@ class Cart
         return $this->items;
     }
 
-    public function isEmpty()
-    {
+    public function isEmpty() {
         return count($this->items) == 0;
     }
 
-    public function getTotal()
-    {
+    public function getTotal() {
         $total = 0;
         foreach ($this->items as $item => $num) {
             $p = Product::getProductById($item)->getProductPrice();
@@ -55,23 +53,25 @@ class Cart
         return $total;
     }
 
-    public function render()
-    {
+    public function render() {
         if ($this->isEmpty()) {
             echo "<div class=\"cart empty\">[Empty Cart]</div>";
         } else {
             echo "<div class=\"cart\"><table>";
             echo "<tr><th>Article-ID</th><th>#</th></tr>";
-            foreach ($this->items as $item => $num) {
+            $items = $this->getItems();
+            foreach ($items as $item => $num) {
                 $product = Product::getProductById($item);
-                // var_dump($product);
                 $id = $product->getID();
+                $id = (int)$id;
                 echo "<tr><td>" . $product->getProductName() .
                     " </td><td><div class=\"plus & minus\">
+                            <button onclick='updateAmount(`+`, `item-" .$id . "`,`". $id ."`)'>+</button>
                             <form class=\"Add2Cart\" method=\"post\">
-                                <input type='number' name='amount' class='updateCart' value='$num' min='1'>
+                                <input type='text' name='amount' class='updateCart item-" .$id. " ' value='$num' min='1'>
                                 <input type='hidden' name='order_id' value='" . $product->getID() . "'>
                             </form>
+                            <td><button onclick='updateAmount(`-`, `item-" .$id . "`,`". $id ."`)'>-</button></td>
                        </div></td>
                        <td><button onclick='removeItem(".$id.")'>Remove</button></td>
                        </tr>";
@@ -80,6 +80,5 @@ class Cart
             echo "</table></div>";
         }
     }
-
 }
 

@@ -1,24 +1,10 @@
 <?php
-require_once("autoloader.php");
+require_once ($_SERVER['DOCUMENT_ROOT']. '/Webshop' .'/lib/Cart.class.php');
 
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = new Cart();
 }
 $cart = $_SESSION['cart'];
-
-if (isset($_POST['item'])) {
-    $item = $_POST['item'];
-    if (isset($item)) {
-        $cart->updateItem($item['id'], $item['num']);
-    }
-
-}
-
-if (isset($_POST['amount'])) {
-    $amount = $_POST['amount'];
-    $id = $_POST['order_id'];
-    $cart->setItem($id, $amount);
-}
 ?>
 
 <!DOCTYPE html>
