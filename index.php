@@ -7,7 +7,7 @@ $action = $request->getParameter('action', 'home');
 $languages = $request->getParameter('lang', 'en');
 
 // Inizialize model
-if (!DB::create('localhost', 'root', '', 'webshop2')) {
+if (!DB::create('localhost', 'root', '', 'webshop')) {
     die("Unable to connect to database [" . DB::getInstance()->connect_error . "]");
 }
 

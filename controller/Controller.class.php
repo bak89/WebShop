@@ -9,7 +9,6 @@ class Controller
     // A C T I O N S
     public function home(Request $request)
     {
-        $this->data["message"] = "Hello World!";
         $this->title = "Home";
 
         $sort = $request->getParameter('sort', 'id');
@@ -64,8 +63,21 @@ class Controller
             return 'login';
         }
         $this->title = "Profile";
-        $this->data["message"] = "Hello World!";
         $this->startSession();
+    }
+
+    public function update_profile(Request $request){
+        $values = $request->getParameter('user', array());
+        $user = User::getUserById($values['id']);
+        if (!$user) {
+            return $this->page404();
+        }
+        $user->update($values);
+        $user->save($user);
+        $this->data['message'] = "User updated successfully!";
+
+        header('Location: index.php?action=home');
+        exit();
     }
 
     // A D M I N  ONLY

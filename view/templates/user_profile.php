@@ -9,7 +9,7 @@ if ($this->controller->isLoggedIn()){
 <p>I'm your profile</p>
 <p>Here you can change your data</p>
 
-<form method="post" action="<?= $this->build_url('index.php', array('action' => 'update_user')) ?>">
+<form method="post" action="<?= $this->build_url('index.php', array('action' => 'update_profile')) ?>">
     <p><label>Name</label><input name="user[name]" value="<?= $user->getName() ?>" type="text" readonly/></p>
     <p><label>Last Name</label><input id="lastname" name="user[lastname]" value="<?= $user->getLastName() ?>"
                                       type="text" readonly/></p>
