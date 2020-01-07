@@ -78,7 +78,10 @@ class Cart
                        </tr>";
             }
             echo "<tr><th id=\'total\'>TOTAL CHF</th><th>" . $this->getTotal() . "</th></tr>";
-            echo "</table></div>";
+            echo "</table>
+            <button class='checkout'>Checkout</button>
+            </div>";
+
         }
     }
 }
