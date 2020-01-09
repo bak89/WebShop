@@ -35,8 +35,10 @@ class User
     {
         $users = User::getUser('id');
         foreach ($users as $user) {//todo hash password
-            if ($user->Email == $login && $user->Password == $password) {
-                return $user;
+            if ($user->Email==$login){
+                if (password_verify($password,$user->Password)){
+                    return $user;
+                }
             }
         }
         return null;
