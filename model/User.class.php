@@ -34,7 +34,7 @@ class User
     public static function checkCredentials($login, $password)
     {
         $users = User::getUser('id');
-        foreach ($users as $user) {
+        foreach ($users as $user) {//todo hash password
             if ($user->Email == $login && $user->Password == $password) {
                 return $user;
             }

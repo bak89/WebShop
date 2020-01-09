@@ -1,6 +1,10 @@
 header{
     background: #ff7934;
     text-align: center;
+    width: 100%;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
 }
 
 .logo{
@@ -29,6 +33,7 @@ header{
     overflow: hidden;
     background-color: #333;
     font-family: Arial;
+
 }
 
 .navbar2 {
@@ -37,6 +42,7 @@ header{
     overflow: hidden;
     background-color: #333;
     font-family: Arial;
+
 }
 
 /* Links inside the navbar */

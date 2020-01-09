@@ -26,7 +26,12 @@
         echo "<img class='prod-img' src='assets/images/$image'>";
         ?>
     </div>
-    <?php echo "<p class='price'>CHF $price</p>"; ?>
+    <?php echo "<p class='price'>CHF $price</p>";
+
+    /*if ($this->controller->isAdmin()) {
+    echo "<br><a href=\"index.php?action=edit_product&id=$id\">Edit</a> | <a href=\"index.php?action=delete_product&id=$id\">Delete</a><br/>";
+    }*/
+    ?>
 </div>
 <?php
 }}
