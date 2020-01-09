@@ -15,7 +15,7 @@ class User
     static public function insert($values)
     {
         if ($stmt = DB::getInstance()->prepare("INSERT INTO users (Name, LastName, Email , Password, UserType,Street,Zip,City) VALUE (?,?,?,?,?,?,?,?)")) {
-            if ($stmt->bind_param('ssssssss', $values['name'], $values['lastname'],$values['email'], $values['password'], $values['userType'], $values['street'], $values['zip'], $values['city'])) {
+            if ($stmt->bind_param('ssssssss', $values['name'], $values['lastname'], $values['email'], $values['password'], $values['userType'], $values['street'], $values['zip'], $values['city'])) {
                 if ($stmt->execute()) {
                     return true;
                 }
@@ -35,14 +35,13 @@ class User
     {
         $users = User::getUser('id');
         foreach ($users as $user) {//todo hash password
-            if ($user->Email==$login){
-                if (password_verify($password,$user->Password)){
+            if ($user->Email == $login) {
+                if (password_verify($password, $user->Password)) {
                     return $user;
                 }
             }
         }
         return null;
-        //return isset(self::$users[$login]) && self::$users[$login] == $password;
     }
 
     static public function getUser($orderBy = "id")
@@ -66,16 +65,6 @@ class User
     {
         $id = (int)$id;
         $res = DB::doQuery("SELECT * FROM users WHERE id = $id");
-        if ($res) {
-            if ($user = $res->fetch_object(get_class())) {
-                return $user;
-            }
-        }
-        return null;
-    }
-
-    static public function getUserByEmail($email){
-        $res = DB::doQuery("SELECT * FROM users WHERE Email = '$email'");
         if ($res) {
             if ($user = $res->fetch_object(get_class())) {
                 return $user;
@@ -150,9 +139,47 @@ class User
     public function save($user)
     {
         $id = $user->getID();
-        $sql = sprintf("UPDATE users SET Name='%s',LastName='%s', Email='%s', Password='%s', UserType='%s',Street='%s',Zip='%s',City='%s' WHERE id = %d;", $user->Name, $user->LastName, $user->Email, $user->Password, $user->UserType, $user->Street, $user->Zip, $user->City,$id);
+        $sql = sprintf("UPDATE users SET Name='%s',LastName='%s', Email='%s', Password='%s', UserType='%s',Street='%s',Zip='%s',City='%s' WHERE id = %d;", $user->Name, $user->LastName, $user->Email, $user->Password, $user->UserType, $user->Street, $user->Zip, $user->City, $id);
         $res = DB::doQuery($sql);
         return $res != null;
     }
 
+    public function sendMail($email)
+    {
+        $to = $email; // Send email to our user
+        $subject = 'Signup | Verification'; // Give the email a subject
+        $message = '
+ 
+Thanks for signing up!
+Your account has been created!
+ 
+ 
+';
+
+        $headers = 'From:noreply@gaag.com' . "\r\n"; // Set from headers
+        mail($to, $subject, $message, $headers);
+    }
+
+    //function for mail validation
+    function is_valid_email($email)
+    {
+        if (self::getUserByEmail($email) != null) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+
+    static public function getUserByEmail($email)
+    {
+        $res = DB::doQuery("SELECT * FROM users WHERE Email = '$email'");
+        if ($res) {
+            if ($user = $res->fetch_object(get_class())) {
+                return $user;
+            }
+        }
+        return null;
+    }
 }

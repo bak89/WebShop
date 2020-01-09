@@ -24,6 +24,9 @@ if ($register) {
     } else if ($register['password'] != $register['cpassword']) {
         $formIsValid = false;
         $error = "please enter a valid password";
+    } else if(!User::is_valid_email($register['email'])){
+        $formIsValid = false;
+        $error = "user already exist";
     }
 
     if ($formIsValid) {
@@ -31,9 +34,10 @@ if ($register) {
         $hash = password_hash($password, PASSWORD_DEFAULT);
         $register['password'] = $hash;
         User::insert($register);
+        User::sendMail($register['email']);
         header("Location: index.php?action=home");
     } else {
-        echo "<h1 style='color: red'>" . $error . "</h1>";
+        echo "<h1 style='color: #ac1313'>" . $error . "</h1>";
     }
 }
 ?>
