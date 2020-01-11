@@ -1,5 +1,6 @@
 <?php
 
+
 class Cart
 {
     // product id <-> num
@@ -60,10 +61,18 @@ class Cart
             echo "<div class=\"cart\"><table>";
             echo "<tr><th>Article-ID</th><th>#</th></tr>";
             $items = $this->getItems();
+            //for checkout
+            $itemIds = array();
+            $amounts = array();
             foreach ($items as $item => $num) {
                 $product = Product::getProductById($item);
                 $id = $product->getID();
                 $id = (int)$id;
+
+                //for checkout
+                array_push($itemIds,$id);
+                array_push($amounts,$num);
+
                 echo "<tr><td>" . $product->getProductName() . "</td><td><div class=\"plus & minus\">
 
                            
@@ -79,9 +88,28 @@ class Cart
             }
             echo "<tr><th id=\'total\'>TOTAL CHF</th><th>" . $this->getTotal() . "</th></tr>";
             echo "</table>
-            <button class='checkout'>Checkout</button>
+            
+            <form method=\"post\"> 
+                <input type=\"submit\" name=\"checkout\"value=\"Checkout\"/> 
+            </form> 
             </div>";
-
+            if(array_key_exists('checkout',$_POST)){
+                if(!isset($_SESSION['user'])){
+                    echo "<p>Please log in to checkout!</p>";
+                    return;
+                }
+                $mail = $_SESSION['user'];
+                $user = User::getUserByEmail($mail);
+                $uid = $user->getID();
+                $orderItems ='/';
+                for ($i = 0; $i < sizeof($itemIds); $i++){
+                    $it = $itemIds[$i];
+                    $p = Product::getProductById($it);
+                    $name = $p->getProductName();
+                    $orderItems .= "{$amounts[$i]} x {$name} /";
+                }
+                Order::insert($uid,$orderItems);
+            }
         }
     }
 }

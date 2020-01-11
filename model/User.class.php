@@ -171,7 +171,6 @@ Your account has been created!
 
     }
 
-
     static public function getUserByEmail($email)
     {
         $res = DB::doQuery("SELECT * FROM users WHERE Email = '$email'");
