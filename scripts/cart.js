@@ -29,6 +29,7 @@ let addItem = (id) => {
         .then(function(data) {
             console.log(data);
         });
+    window.location.reload();
 };
 
 let removeItem = (id) => {

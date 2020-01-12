@@ -2,8 +2,6 @@ header{
     background: #ff7934;
     text-align: center;
     width: 100%;
-    position: sticky;
-    position: -webkit-sticky;
     top: 0;
 }
 

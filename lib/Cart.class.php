@@ -90,7 +90,7 @@ class Cart
             echo "</table>
             
             <form method=\"post\"> 
-                <input type=\"submit\" name=\"checkout\"value=\"Checkout\"/> 
+                <input type=\"submit\" name=\"checkout\" value=\"Checkout\"/> 
             </form> 
             </div>";
             if(array_key_exists('checkout',$_POST)){
@@ -109,6 +109,7 @@ class Cart
                     $orderItems .= "{$amounts[$i]} x {$name} /";
                 }
                 Order::insert($uid,$orderItems);
+                header("Location: index.php?action=order_complete");//todo
             }
         }
     }

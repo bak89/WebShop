@@ -54,6 +54,13 @@ class Controller
         $this->startSession();
     }
 
+    public function order_complete(Request $request)
+    {
+        $this->title = "Order Complete";
+        $this->startSession();
+    }
+
+
     // USER
 
     public function user_Profile(Request $request)
@@ -94,10 +101,6 @@ class Controller
 
     public function update_user(Request $request)
     {
-        /* if (!$this->isAdmin()) {
-             $this->data['message'] = "To update a User, please login first!";
-             return 'login';
-         }*/
         $values = $request->getParameter('user', array());
         $user = User::getUserById($values['id']);
         if (!$user) {
@@ -127,10 +130,6 @@ class Controller
 
     public function edit_user(Request $request)
     {
-        /* if (!$this->isAdmin()) {
-             $this->data['message'] = "To edit a User, please login first!";
-             return 'login';
-         }*/
         $id = $request->getParameter('id', 0);
         $user = User::getUserById($id);
         if (!$user) {
@@ -161,10 +160,6 @@ class Controller
 
     public function edit_product(Request $request)
     {
-        /* if (!$this->isLoggedIn()) {
-             $this->data['message'] = "To edit a Product, please login first!";
-             return 'login';
-         }*/
         $id = $request->getParameter('id', 0);
         $product = Product::getProductById($id);
         if (!$product) {

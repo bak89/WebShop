@@ -35,7 +35,7 @@ if ($register) {
         $register['password'] = $hash;
         User::insert($register);
         User::sendMail($register['email']);
-        header("Location: index.php?action=home");
+        header("Location: index.php?action=registered");
     } else {
         echo "<h1 style='color: #ac1313'>" . $error . "</h1>";
     }
@@ -65,21 +65,3 @@ if ($register) {
     <button class="ui button" type="submit">Submit</button>
     <input type="hidden" name="user[userType]" value="user"/>
 </form>
-
-<!--  <div class="field">
-      <label>Name</label>
-      <input id="name" type="text" name="user[name]" placeholder="Name & Lastname" required>
-  </div>
-  <div class="field">
-      <label>Email</label>
-      <input id="email" type="email" name="user[email]" placeholder="Your@mail.com" required>
-  </div>
-  <div class="field">
-      <label>Password</label>
-      <input id="password" type="password" name="user[password]" placeholder="Your Password">
-  </div>
-  <button class="ui button" type="submit">Submit</button>
-
-  <input type="hidden" name="user[userType]" value="user"/>
-  </form>
-</div>-->

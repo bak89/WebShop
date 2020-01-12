@@ -34,7 +34,7 @@ class User
     public static function checkCredentials($login, $password)
     {
         $users = User::getUser('id');
-        foreach ($users as $user) {//todo hash password
+        foreach ($users as $user) {
             if ($user->Email == $login) {
                 if (password_verify($password, $user->Password)) {
                     return $user;
@@ -152,6 +152,22 @@ class User
  
 Thanks for signing up!
 Your account has been created!
+ 
+ 
+';
+
+        $headers = 'From:noreply@gaag.com' . "\r\n"; // Set from headers
+        mail($to, $subject, $message, $headers);
+    }
+
+    public function sendMailPasswordChange($email)
+    {
+        $to = $email; // Send email to our user
+        $subject = 'Password changed | Verification'; // Give the email a subject
+        $message = '
+ 
+Your password has been successfully changed!
+If it wasn\'t you, contact us as soon as possible.
  
  
 ';
