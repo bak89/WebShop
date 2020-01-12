@@ -6,8 +6,9 @@
     <p><label>Zip</label><input id="zip" name="user[zip]" value="<?= $user->getZip()?>" pattern="[0-9]{4}"/></p>
     <p><label>City</label><input id="city" name="user[city]" value="<?= $user->getCity()?>"/></p>
     <p><label>Email</label><input name="user[email]" value="<?php echo $user->getEmail()?>" type="email"/></p>
-    <p><label>Password</label><input name="user[password]" value="<?php echo $user->getPassword()?>" type="password"/></p>
     <p><label>UserType</label><input name="user[userType]" value="<?php echo $user->getUserType()?>" type="text"></p>
+    <p><input type="hidden" name="user[password]" value="<?= $user->getPassword() ?>"/></p>
+    <p><label>Password</label><a href="<?= $this->build_url('index.php',array('action' =>'change_password')) ?>">Change Password</a>
 
     <p><input type="submit" value="Save"></p>
     <input type="hidden" name="user[id]" value="<?php echo $user->getID()?>" />

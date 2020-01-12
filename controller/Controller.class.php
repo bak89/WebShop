@@ -60,6 +60,14 @@ class Controller
         $this->startSession();
     }
 
+    //todo
+    public function change_password(Request $request)
+    {
+        $this->title = "Change Your Password";
+        $password = $request->getParameter('password', '');
+    }
+
+
 
     // USER
 

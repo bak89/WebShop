@@ -17,7 +17,8 @@ if ($this->controller->isLoggedIn()){
     <p><label>Zip</label><input id="zip" name="user[zip]" value="<?= $user->getZip() ?>" pattern="[0-9]{4}"/></p>
     <p><label>City</label><input id="city" name="user[city]" value="<?= $user->getCity() ?>"/></p>
     <p><label>Email</label><input name="user[email]" value="<?= $user->getEmail() ?>" type="email" readonly/></p>
-    <p><label>Password</label><input name="user[password]" value="<?= $user->getPassword() ?>" type="password"/></p>
+    <p><input type="hidden" name="user[password]" value="<?= $user->getPassword() ?>"/></p>
+    <p><label>Password</label><a href="<?= $this->build_url('index.php',array('action' =>'change_password')) ?>">Change Password</a>
 
     <p>
         <button type="submit" name="save">Save</button>

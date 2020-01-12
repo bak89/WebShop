@@ -135,6 +135,12 @@ class User
         $this->Zip = $db->escape_string($values['zip']);
         $this->City = $db->escape_string($values['city']);
     }
+//todo
+    public function updatePassword($values)
+    {
+        $db = DB::getInstance();
+        $this->Password = $db->escape_string($values['password']);
+    }
 
     public function save($user)
     {
