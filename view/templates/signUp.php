@@ -30,8 +30,7 @@ if ($register) {
     }
 
     if ($formIsValid) {
-        $password = $register['password'];
-        $hash = password_hash($password, PASSWORD_DEFAULT);
+        $hash = password_hash($register['password'], PASSWORD_DEFAULT);
         $register['password'] = $hash;
         User::insert($register);
         User::sendMail($register['email']);

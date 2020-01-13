@@ -18,10 +18,8 @@ if ($register) {
     }
 
     if ($formIsValid) {
-        $passwordNH= $register['password'];
-        $hash = password_hash($passwordNH, PASSWORD_DEFAULT);
-        $password = $hash;
-        User::updatePassword($password);
+        $password = password_hash($register['password'], PASSWORD_DEFAULT);
+        $_SESSION['newPassword']=$password;
         header("Location: index.php?action=user_profile");
     } else {
         echo "<h1 style='color: #ac1313'>" . $error . "</h1>";

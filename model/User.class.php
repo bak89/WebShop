@@ -136,7 +136,7 @@ class User
         $this->City = $db->escape_string($values['city']);
     }
 //todo
-    public function updatePassword($values)
+    public function updatePassword($values, $id)
     {
         $db = DB::getInstance();
         $this->Password = $db->escape_string($values['password']);
