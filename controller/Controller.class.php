@@ -67,8 +67,6 @@ class Controller
         $password = $request->getParameter('password', '');
     }
 
-
-
     // USER
 
     public function user_Profile(Request $request)
@@ -224,6 +222,7 @@ class Controller
         $this->startSession();
         $_SESSION['user'] = $login;
         $_SESSION['userType'] = $user->getUserType();
+        $_SESSION['userId'] = $user->getID(); //in case delete
         $this->data['message'] = "Hi " . ucfirst($login) . ", you just logged in!";
         //external redirect
         header('Location: index.php?action=home');
