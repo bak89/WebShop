@@ -1,5 +1,4 @@
 <?php
-require_once 'autoloader.php';
 class Cart
 {
     // product id <-> num
