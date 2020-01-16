@@ -18,9 +18,7 @@ switch ($this->language) {
         <p class='description'><?= $desc ?></p>
         <p class='price'>CHF <?= $price ?></p>
         <form class="add-to-cart" id="formCart" method="post">
-            <input hidden name="item[id]" value="<?= $id ?>"/><br/>
-            <input hidden name="item[num]" type="number" value="1"/><br/>
-            <input class="add-btn" type="submit" onclick="updateAmount()" value="<?= $this->tr('addToCart') ?>"/>
+            <input class="add-btn" type="button" onclick="addItem(<?= $id ?>)" value="<?= $this->tr('addToCart') ?>"/>
         </form>
     </div>
 </div>

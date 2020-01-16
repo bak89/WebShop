@@ -4,7 +4,8 @@ class Cart
     // product id <-> num
     private $items = [];
 
-    public function addItem($itemId, $num) {
+    public function addItem($itemId, $num)
+    {
         if (isset($this->items[$itemId])) {
             $this->items[$itemId] += $num;
         } else {
@@ -12,7 +13,8 @@ class Cart
         }
     }
 
-    public function removeItem($itemId, $num) {
+    public function removeItem($itemId, $num)
+    {
         if (isset($this->items[$itemId])) {
             $this->items[$itemId] -= $num;
             $this->items;
@@ -24,7 +26,8 @@ class Cart
         }
     }
 
-    public function updateItem($itemId, $num) {
+    public function updateItem($itemId, $num)
+    {
         if (isset($this->items[$itemId])) {
             $this->items[$itemId] += $num;
             if ($this->items[$itemId] <= 0) {
@@ -35,15 +38,18 @@ class Cart
         }
     }
 
-    public function getItems() {
+    public function getItems()
+    {
         return $this->items;
     }
 
-    public function isEmpty() {
+    public function isEmpty()
+    {
         return count($this->items) == 0;
     }
 
-    public function getTotal() {
+    public function getTotal()
+    {
         $total = 0;
         foreach ($this->items as $item => $num) {
             $p = Product::getProductById($item)->getProductPrice();
@@ -52,7 +58,8 @@ class Cart
         return $total;
     }
 
-    public function render() {
+    public function render()
+    {
         if ($this->isEmpty()) {
             echo "<div class=\"cart empty\">[Empty Cart]</div>";
         } else {
@@ -68,20 +75,20 @@ class Cart
                 $id = (int)$id;
 
                 //for checkout
-                array_push($itemIds,$id);
-                array_push($amounts,$num);
+                array_push($itemIds, $id);
+                array_push($amounts, $num);
 
                 echo "<tr><td>" . $product->getProductName() . "</td><td><div class=\"plus & minus\">
 
                            
                             <form class=\"Add2Cart\" method=\"post\">
-                                <input type='text' name='amount' class='updateCart item-" .$id. " ' value='$num' min='1'>
+                                <input type='text' name='amount' class='updateCart item-" . $id . " ' value='$num' min='1' readonly>
                                 <input type='hidden' name='order_id' value='" . $product->getID() . "'>
                             </form>
-                            <td><button class=\"pm-btn\" onclick='updateAmount(`-`, `item-" .$id . "`,`". $id ."`)'>-</button></td>
-                            <td><button class=\"pm-btn\" onclick='updateAmount(`+`, `item-" .$id . "`,`". $id ."`)'>+</button></td>
+                            <td><button class=\"pm-btn\" onclick='removeItem(" . $id . ")'>-</button></td>
+                            <td><button class=\"pm-btn\" onclick='addItem(" . $id . ")'>+</button></td>
                        </div></td>   
-                       <td><button onclick='removeItem(".$id.")'>Remove</button></td>
+                       <td><button onclick='removeItem(" . $id . ")'>Remove</button></td>
                        </tr>";
             }
             echo "<tr><th id=\'total\'>TOTAL CHF</th><th>" . $this->getTotal() . "</th></tr>";
@@ -91,23 +98,24 @@ class Cart
                 <input type=\"submit\" name=\"checkout\" value=\"Checkout\"/> 
             </form> 
             </div>";
-            if(array_key_exists('checkout',$_POST)){
-                if(!isset($_SESSION['user'])){
+            if (array_key_exists('checkout', $_POST)) {
+                if (!isset($_SESSION['user'])) {
                     echo "<p>Please log in to checkout!</p>";
                     return;
                 }
                 $mail = $_SESSION['user'];
                 $user = User::getUserByEmail($mail);
                 $uid = $user->getID();
-                $orderItems ='/';
-                for ($i = 0; $i < sizeof($itemIds); $i++){
+                $orderItems = '/';
+                for ($i = 0; $i < sizeof($itemIds); $i++) {
                     $it = $itemIds[$i];
                     $p = Product::getProductById($it);
                     $name = $p->getProductName();
                     $orderItems .= "{$amounts[$i]} x {$name} /";
                 }
-                Order::insert($uid,$orderItems);
-                echo "<script type='text/javascript'>window.top.location='index.php?action=order_complete';</script>"; exit;
+                Order::insert($uid, $orderItems);
+                echo "<script type='text/javascript'>window.top.location='index.php?action=order_complete';</script>";
+                exit;
             }
         }
     }

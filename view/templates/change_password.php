@@ -34,7 +34,7 @@ if ($register) {
 
 <form class="ui-form" method="post">
     <p></p><label>Password</label><input id="password" type="password" name="user[password]"
-                                         placeholder="Your Password" value="<?= $register['password'] ?? null ?>"
+                                         placeholder="New Password" value="<?= $register['password'] ?? null ?>"
                                          required></p>
     <p></p><label>Repeat Password</label><input id="cpassword" type="password" name="user[cpassword]"
                                                 placeholder="Repeat Password"

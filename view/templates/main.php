@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Webshop' . '/lib/Cart.class.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/WebShop' . '/lib/Cart.class.php');
 
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = new Cart();
@@ -57,7 +57,7 @@ $cart = $_SESSION['cart'];
 
         <a href="index.php?action=cart">
             <img src="assets/resources/shopping-cart.png" id="cart-btn">
-            <?= $cart->getTotal() ?>//qui refresh per carrello
+            <?= $cart->getTotal() ?>
         </a>
     </div>
     <?php $this->render_navbar() ?>
