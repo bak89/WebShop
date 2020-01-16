@@ -135,17 +135,18 @@ class User
         $this->Zip = $db->escape_string($values['zip']);
         $this->City = $db->escape_string($values['city']);
     }
-//todo
-    public function updatePassword($values, $id)
-    {
-        $db = DB::getInstance();
-        $this->Password = $db->escape_string($values['password']);
-    }
 
     public function save($user)
     {
         $id = $user->getID();
         $sql = sprintf("UPDATE users SET Name='%s',LastName='%s', Email='%s', Password='%s', UserType='%s',Street='%s',Zip='%s',City='%s' WHERE id = %d;", $user->Name, $user->LastName, $user->Email, $user->Password, $user->UserType, $user->Street, $user->Zip, $user->City, $id);
+        $res = DB::doQuery($sql);
+        return $res != null;
+    }
+
+    public function updatePassword($id,$password){
+
+        $sql = sprintf("UPDATE users SET Password='%s' WHERE id = %d" ,$password, $id);
         $res = DB::doQuery($sql);
         return $res != null;
     }
