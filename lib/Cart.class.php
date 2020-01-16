@@ -1,6 +1,5 @@
 <?php
-
-
+require_once 'autoloader.php';
 class Cart
 {
     // product id <-> num
@@ -109,7 +108,7 @@ class Cart
                     $orderItems .= "{$amounts[$i]} x {$name} /";
                 }
                 Order::insert($uid,$orderItems);
-                header("Location: index.php?action=order_complete");//todo
+                echo "<script type='text/javascript'>window.top.location='index.php?action=order_complete';</script>"; exit;
             }
         }
     }
