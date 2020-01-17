@@ -8,11 +8,6 @@
     <p><label>City</label><input id="city" name="user[city]" value="<?= $user->getCity() ?>"/></p>
     <p><label>Email</label><input name="user[email]" value="<?php echo $user->getEmail() ?>" type="email"/></p>
     <p><label>UserType</label><input name="user[userType]" value="<?php echo $user->getUserType() ?>" type="text"></p>
-    <p><input type="hidden" name="user[password]" value="<?php if (isset($_SESSION['newPassword'])) {
-            echo $_SESSION['newPassword'];
-        } else {
-            //echo $user->getPassword();
-        } ?>"/></p>
     <p><label>Password</label><a href="<?= $this->build_url('index.php', array('action' => 'change_password')) ?>">Change
             Password</a>
 

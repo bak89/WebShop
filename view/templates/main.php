@@ -30,9 +30,6 @@ $cart = $_SESSION['cart'];
         <p class="logo">GA*AG</p>
     </div>
     <div class="navbar" id="navbar-top">
-        <form action="index.php?action=search" method="post" id="searchbar">
-            <label>Search:</label><input type="text" placeholder="<?= $this->tr('search') ?>" required>
-        </form>
         <?php if (!$this->controller->isLoggedIn()) echo
             " <div class=\"dropdown\">
                     <button class=\"dropbtn\">" . $this->tr('signIn') . "
@@ -107,7 +104,7 @@ $cart = $_SESSION['cart'];
         </div>
 
         <div class="col-5">
-            <p class="footernav-item"> <a>Currency : CHF</a></p>
+            <p class="footernav-item"> <p>Currency : CHF</p></p>
         </div>
         <div class="col-7">
             <p class="footernav-item">
@@ -123,7 +120,7 @@ $cart = $_SESSION['cart'];
         </div>
 
         <div class="col-13">
-            <p class="footernav-item"> <a>&copy; 2019 Anna & Giorgio</a></p></div>
+            <p class="footernav-item"> <p>&copy; 2019 Anna & Giorgio</p></p></div>
         </div>
 </footer>
 </body>
