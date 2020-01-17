@@ -1,7 +1,9 @@
-<h3>Welcome!</h3>
-<h5>See our newest products...</h5>
-<p><?php if ($this->controller->isAdmin()) echo "<a href=\"index.php?action=list_users\">The list of users</a>"; ?> </p>
-<p><?php if ($this->controller->isAdmin()) echo "<a href=\"index.php?action=add_product\">Add Product</a>"; ?> </p>
+<?php if ($this->controller->isAdmin()) echo "
+<p>Admin Options</p>
+<div class='admin-options'>
+<p class='option'> <a href='index.php?action=list_users'>The list of users</a> </p>
+<p class='option'><a href=\"index.php?action=add_product\">Add Product</a></p>
+</div>" ?>
 
 <div class="product-gallery">
     <!--all product-->

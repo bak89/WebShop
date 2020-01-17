@@ -77,3 +77,20 @@ a {
     }
 }
 
+.admin-options{
+    display: flex;
+    margin: 10px;
+}
+
+.option{
+    margin: 10px;
+    background-color: #ff7934;
+    padding: 7px;
+    text-decoration: none;
+    border-radius: 25px;
+}
+
+.option:hover{
+    background-color: #ffb64f;
+}
+
