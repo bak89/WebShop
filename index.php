@@ -6,8 +6,15 @@ $request = new Request();
 $action = $request->getParameter('action', 'home');
 $languages = $request->getParameter('lang', 'en');
 
+include 'config.php';
+
+$host = DBHOST;
+$user = DBUSER;
+$pw = DBPWD;
+$dbname = DBNAME;
+
 // Inizialize model
-if (!DB::create('localhost', 'root', '', 'webshop')) {
+if (!DB::create($host, $user, $pw, $dbname)) {
     die("Unable to connect to database [" . DB::getInstance()->connect_error . "]");
 }
 
