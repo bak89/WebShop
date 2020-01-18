@@ -69,13 +69,13 @@ $cart = $_SESSION['cart'];
         <!-- link about us / account  -->
         <div class="col-1">
             <p class="footernav-item"><a id="AboutUS"
-                                         href="<?= $this->build_url('index.php', array('action' => 'aboutus')) ?>"
+                                         href="<?= $this->build_url('index.php', array('action' => 'aboutUs')) ?>"
                                          class="footernav-item">
                     <span><?= $this->tr('aboutus') ?></span>
                 </a>
             </p>
             <p class="footernav-item"><a id="ContactUS"
-                                         href="<?= $this->build_url('index.php', array('action' => 'contactus')) ?>"
+                                         href="<?= $this->build_url('index.php', array('action' => 'contactUs')) ?>"
                                          class="footernav-item">
                     <span><?= $this->tr('contactus') ?></span>
                 </a>
